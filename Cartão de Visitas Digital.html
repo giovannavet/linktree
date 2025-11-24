@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão Virtual | Dra. Giovanna Paiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-rose-nude: #F9EBEA; 
+            --color-rose-deep: #C77D7D; 
+            --color-graphite: #707070; 
+            --color-text-dark: #333333;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-rose-nude);
+            color: var(--color-text-dark);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .card-container {
+            max-width: 480px;
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 0 5px white, 0 0 0 7px var(--color-rose-deep);
+        }
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+        }
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+        .contact-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        /* Loader para a galeria */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--color-rose-deep);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-container">
+    <img src="https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730681482135?e=1764806400&v=beta&t=zAKD804fKV4dlh2En9zvNeRv9K_g2O7aT5GBiQ-QaTQ" 
+         alt="Foto de Perfil Dra. Giovanna Paiva" 
+         class="profile-img"
+         onerror="this.onerror=null; this.src='https://placehold.co/140x140/C77D7D/FFFFFF?text=GP';"
+    >
+
+    <h1 class="text-3xl font-bold text-gray-800">Dra. Giovanna Paiva</h1>
+    <p class="text-lg font-semibold text-rose-deep mb-2">Medicina Veterinária Integrativa</p>
+    <p class="text-sm text-gray-600 mb-4">Atendimento Domiciliar em Natal, RN - CRMV-RN 2551</p>
+
+    <!-- Botões de Ação Principal -->
+    <div class="space-y-3 mt-5">
+        <!-- Botão Salvar Contato (VCF) -->
+        <a id="saveContactBtn" href="#" class="contact-btn bg-green-500 text-white hover:bg-green-600">
+            <i class="fas fa-address-card"></i>
+            Salvar Contato (VCF)
+        </a>
+
+        <!-- Botão WhatsApp (Principal) -->
+        <a href="https://wa.me/5583981628225" target="_blank" class="contact-btn bg-gray-700 text-white hover:bg-gray-800">
+            <i class="fab fa-whatsapp"></i>
+            Chamar no WhatsApp
+        </a>
+
+        <!-- Botão Instagram -->
+        <a href="https://www.instagram.com/giovannavet?igsh=N2lwdDNhbjJ2NHEy" target="_blank" class="contact-btn bg-pink-600 text-white hover:bg-pink-700">
+            <i class="fab fa-instagram"></i>
+            Ver Instagram
+        </a>
+    </div>
+
+    <!-- Seção de Galeria de Fotos -->
+    <div class="mt-8 pt-4 border-t border-rose-nude">
+        <h2 class="text-xl font-bold text-gray-700 mb-3 flex items-center justify-center">
+            <i class="fas fa-camera-retro mr-2" style="color: var(--color-rose-deep);"></i>
+            Momentos e Atendimentos
+        </h2>
+        <div id="photoGallery" class="gallery">
+            <div class="col-span-full flex justify-center items-center py-10" id="galleryLoading">
+                <div class="loader"></div>
+                <p class="ml-3 text-gray-500">Carregando fotos...</p>
+            </div>
+            <!-- As fotos serão inseridas aqui via JavaScript -->
+        </div>
+        <p id="galleryError" class="text-sm text-red-500 mt-4" style="display:none;"></p>
+    </div>
+</div>
+
+<script type="module">
+    // --- Importações do Firebase ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, collection, query, onSnapshot, orderBy, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    
+    setLogLevel('Debug');
+    
+    // --- Configurações Firebase ---
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+    // --- Elementos do DOM ---
+    const photoGallery = document.getElementById('photoGallery');
+    const galleryLoading = document.getElementById('galleryLoading');
+    const galleryError = document.getElementById('galleryError');
+    const saveContactBtn = document.getElementById('saveContactBtn');
+
+    let db, auth;
+    let userId = 'anonimo_cartao';
+
+    // --- Lógica do VCF (Salvar Contato) ---
+    function createVCard(name, phone, email, address) {
+        return `BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+N:Paiva;Giovanna;C. Branco;;Dra.
+ORG:Dra. Giovanna Paiva - Veterinária Integrativa
+TITLE:Médica Veterinária
+TEL;TYPE=CELL:${phone}
+EMAIL;TYPE=PREF,INTERNET:${email}
+ADR;TYPE=WORK:;;${address};Natal;RN;;Brasil
+END:VCARD`;
+    }
+
+    saveContactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const vCardContent = createVCard(
+            "Dra. Giovanna Paiva C. Branco",
+            "+5583981628225",
+            "castelobrancover@gmail.com",
+            "Atendimento Domiciliar"
+        );
+        const blob = new Blob([vCardContent], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+        
+        // Simula o download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Giovanna_Paiva_Veterinaria.vcf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+
+    // --- Funções de Firebase e Galeria ---
+
+    async function initializeFirebase() {
+        try {
+            if (Object.keys(firebaseConfig).length === 0) {
+                galleryError.textContent = 'Erro de configuração do Firebase.';
+                galleryError.style.display = 'block';
+                galleryLoading.style.display = 'none';
+                return;
+            }
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            
+            // Tenta autenticar ou usa anônimo
+            if (initialAuthToken) {
+                await signInWithCustomToken(auth, initialAuthToken).catch(() => signInAnonymously(auth));
+            } else {
+                await signInAnonymously(auth);
+            }
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    userId = user.uid;
+                    listenToGalleryUpdates();
+                } else {
+                    galleryError.textContent = 'Falha na autenticação. Galeria pode não ser atualizada em tempo real.';
+                    galleryError.style.display = 'block';
+                    galleryLoading.style.display = 'none';
+                }
+            });
+
+        } catch (e) {
+            console.error("Erro na inicialização do Firebase:", e);
+            galleryError.textContent = 'Erro fatal no Firebase: ' + e.message;
+            galleryError.style.display = 'block';
+            galleryLoading.style.display = 'none';
+        }
+    }
+    
+    function renderGallery(photos) {
+        photoGallery.innerHTML = '';
+        galleryLoading.style.display = 'none';
+        
+        if (photos.length === 0) {
+            photoGallery.innerHTML = '<p class="text-gray-500 col-span-full mt-4">Nenhuma foto de atendimento disponível no momento.</p>';
+            return;
+        }
+
+        photos.forEach(photo => {
+            const imgHtml = `
+                <div class="gallery-item">
+                    <img src="${photo.url}" alt="${photo.caption || 'Foto de atendimento'}" loading="lazy" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/400x400/C77D7D/FFFFFF?text=Foto+Indisponível';"
+                    >
+                </div>
+            `;
+            photoGallery.insertAdjacentHTML('beforeend', imgHtml);
+        });
+    }
+
+    // Ouve as atualizações da galeria (Fotos públicas)
+    function listenToGalleryUpdates() {
+        // Coleção pública para fotos: /artifacts/{appId}/public/data/gallery_photos
+        const photosColRef = collection(db, 'artifacts', appId, 'public', 'data', 'gallery_photos');
+        // Usamos onSnapshot para atualizações em tempo real. Ordenação por data de criação.
+        const q = photosColRef; 
+
+        onSnapshot(q, (snapshot) => {
+            galleryError.style.display = 'none';
+            const photos = [];
+            snapshot.forEach((doc) => {
+                photos.push({ id: doc.id, ...doc.data() });
+            });
+            
+            // Ordenar no cliente, já que orderBy em Firestore exige index e pode falhar
+            photos.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+            renderGallery(photos);
+        }, (error) => {
+            console.error("Erro ao ouvir atualizações da galeria:", error);
+            galleryLoading.style.display = 'none';
+            galleryError.textContent = 'Erro ao carregar galeria: ' + error.message;
+            galleryError.style.display = 'block';
+        });
+    }
+    
+    window.onload = initializeFirebase;
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Privativo | Gestão de Fotos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-rose-nude: #F9EBEA; 
+            --color-rose-deep: #C77D7D; 
+            --color-graphite: #707070; 
+            --color-text-dark: #333333;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-rose-nude);
+            color: var(--color-text-dark);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container-admin {
+            max-width: 600px;
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        .photo-list-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .photo-list-item:last-child {
+            border-bottom: none;
+        }
+        .photo-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+        /* Loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--color-rose-deep);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div id="adminPanel" class="container-admin">
+    <h1 class="text-2xl font-bold mb-4 text-center text-rose-deep">
+        <i class="fas fa-user-lock mr-2"></i> Painel Privativo de Fotos
+    </h1>
+    <p class="text-center text-sm text-gray-600 mb-6">Área de gestão de conteúdo para a galeria do Cartão Virtual.</p>
+
+    <div id="authCheck" class="text-center">
+        <p id="authMessage" class="font-semibold text-red-500 mb-4">Verificando permissões...</p>
+        <a href="index.html" class="text-sm text-blue-500 hover:underline"><i class="fas fa-arrow-left"></i> Voltar ao Link-in-Bio</a>
+    </div>
+
+    <!-- Conteúdo da Gestão (Visível apenas para o ADMIN) -->
+    <div id="managementContent" style="display:none;">
+        
+        <!-- Formulário de Nova Foto (Simulação de Upload de URL) -->
+        <div class="p-4 bg-rose-nude rounded-lg mb-6 shadow-inner">
+            <h2 class="text-lg font-semibold mb-3 text-graphite">Adicionar Nova Foto (URL)</h2>
+            <input type="url" id="photoUrl" placeholder="URL da imagem (ex: https://site.com/foto.jpg)" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:ring-rose-deep focus:border-rose-deep">
+            <input type="text" id="photoCaption" placeholder="Legenda (opcional)" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:ring-rose-deep focus:border-rose-deep">
+            <button id="addPhotoBtn" class="w-full bg-rose-deep text-white font-bold p-2 rounded-md hover:bg-rose-600 transition duration-200 flex items-center justify-center">
+                <i class="fas fa-plus mr-2"></i> Adicionar à Galeria
+            </button>
+            <p id="addStatus" class="mt-2 text-sm text-center"></p>
+        </div>
+
+        <!-- Lista de Fotos Atuais -->
+        <h2 class="text-lg font-semibold mb-3 text-graphite">Fotos Publicadas (<span id="photoCount">0</span>)</h2>
+        <div id="photoList" class="border border-gray-200 rounded-lg overflow-hidden">
+            <div class="flex justify-center items-center py-5" id="listLoading">
+                <div class="loader mr-3"></div>
+                <p class="text-gray-500">Carregando...</p>
+            </div>
+            <!-- Lista de fotos aqui -->
+        </div>
+        
+    </div>
+
+</div>
+
+<script type="module">
+    // --- Importações do Firebase ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    
+    setLogLevel('Debug');
+    
+    // --- Configurações Firebase ---
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+    // *** ID do Usuário Administrador - Deve ser o mesmo ID autenticado pelo token inicial! ***
+    let adminId = 'nao-definido'; 
+
+    // --- Elementos do DOM ---
+    const authMessage = document.getElementById('authMessage');
+    const authCheck = document.getElementById('authCheck');
+    const managementContent = document.getElementById('managementContent');
+    const photoUrlInput = document.getElementById('photoUrl');
+    const photoCaptionInput = document.getElementById('photoCaption');
+    const addPhotoBtn = document.getElementById('addPhotoBtn');
+    const addStatus = document.getElementById('addStatus');
+    const photoList = document.getElementById('photoList');
+    const listLoading = document.getElementById('listLoading');
+    const photoCount = document.getElementById('photoCount');
+
+    let db, auth;
+    let isUserAdmin = false;
+
+    // --- Funções de Firebase ---
+
+    async function initializeFirebase() {
+        try {
+            if (Object.keys(firebaseConfig).length === 0) {
+                displayAuthError("Erro de configuração do Firebase. Não é possível gerenciar fotos.");
+                return;
+            }
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            
+            // Tenta autenticar ou usa anônimo
+            if (initialAuthToken) {
+                await signInWithCustomToken(auth, initialAuthToken).catch(() => signInAnonymously(auth));
+            } else {
+                await signInAnonymously(auth);
+            }
+            
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // Define o ID do ADMIN baseado no token inicial (suposição de que o token é dela)
+                    adminId = user.uid; 
+                    
+                    if (user.uid === adminId) {
+                        isUserAdmin = true;
+                        displayAdminPanel();
+                        listenToGalleryUpdates();
+                    } else {
+                        displayAuthError("Acesso negado. Você não é o administrador deste painel.");
+                    }
+                } else {
+                    displayAuthError("Você precisa estar logado para acessar esta página.");
+                }
+            });
+
+        } catch (e) {
+            console.error("Erro na inicialização do Firebase:", e);
+            displayAuthError('Erro fatal no Firebase: ' + e.message);
+        }
+    }
+    
+    function displayAdminPanel() {
+        authCheck.style.display = 'none';
+        managementContent.style.display = 'block';
+    }
+
+    function displayAuthError(message) {
+        authMessage.textContent = message;
+        authMessage.classList.remove('text-red-500');
+        authMessage.classList.add('text-lg', 'text-gray-700');
+    }
+
+    // --- Funções CRUD ---
+
+    // Adiciona uma nova foto (URL)
+    addPhotoBtn.addEventListener('click', async () => {
+        const url = photoUrlInput.value.trim();
+        const caption = photoCaptionInput.value.trim() || '';
+
+        if (!url) {
+            addStatus.textContent = 'Por favor, insira uma URL válida.';
+            addStatus.className = 'mt-2 text-sm text-center text-red-500';
+            return;
+        }
+
+        addStatus.textContent = 'Adicionando foto...';
+        addStatus.className = 'mt-2 text-sm text-center text-blue-500';
+        addPhotoBtn.disabled = true;
+
+        try {
+            // Coleção pública para fotos: /artifacts/{appId}/public/data/gallery_photos
+            const photosColRef = collection(db, 'artifacts', appId, 'public', 'data', 'gallery_photos');
+            
+            await addDoc(photosColRef, {
+                url: url,
+                caption: caption,
+                createdAt: Date.now(),
+                uploadedBy: auth.currentUser.uid 
+            });
+
+            addStatus.textContent = 'Foto adicionada com sucesso!';
+            addStatus.className = 'mt-2 text-sm text-center text-green-500';
+            photoUrlInput.value = '';
+            photoCaptionInput.value = '';
+
+        } catch (error) {
+            console.error("Erro ao adicionar foto:", error);
+            addStatus.textContent = 'Erro ao adicionar foto: ' + error.message;
+            addStatus.className = 'mt-2 text-sm text-center text-red-500';
+        } finally {
+            addPhotoBtn.disabled = false;
+        }
+    });
+
+    // Deleta uma foto
+    async function deletePhoto(photoId) {
+        if (!confirm('Tem certeza que deseja excluir esta foto da galeria?')) {
+            return;
+        }
+        try {
+            const photoDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'gallery_photos', photoId);
+            await deleteDoc(photoDocRef);
+        } catch (error) {
+            console.error("Erro ao deletar foto:", error);
+            alert('Erro ao deletar foto: ' + error.message);
+        }
+    }
+
+    // Ouve as atualizações da galeria (Fotos públicas)
+    function listenToGalleryUpdates() {
+        const photosColRef = collection(db, 'artifacts', appId, 'public', 'data', 'gallery_photos');
+        const q = photosColRef; 
+
+        onSnapshot(q, (snapshot) => {
+            listLoading.style.display = 'none';
+            photoList.innerHTML = '';
+            photoCount.textContent = snapshot.size;
+
+            if (snapshot.size === 0) {
+                photoList.innerHTML = '<p class="text-gray-500 text-center py-5">Nenhuma foto publicada ainda.</p>';
+                return;
+            }
+
+            let photos = [];
+            snapshot.forEach((doc) => {
+                photos.push({ id: doc.id, ...doc.data() });
+            });
+            
+            // Ordenar no cliente por data de criação
+            photos.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+            photos.forEach(photo => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'photo-list-item bg-white hover:bg-gray-50';
+                itemDiv.innerHTML = `
+                    <img src="${photo.url}" alt="Miniatura" class="photo-thumb" onerror="this.src='https://placehold.co/50x50/C77D7D/FFFFFF?text=X';">
+                    <div class="flex-grow text-left">
+                        <p class="font-semibold text-sm">${photo.caption || 'Sem Legenda'}</p>
+                        <p class="text-xs text-gray-500 truncate" title="${photo.url}">${photo.url}</p>
+                    </div>
+                    <button class="delete-btn text-red-500 hover:text-red-700 ml-4 p-2 rounded-full transition duration-150" data-id="${photo.id}">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                `;
+                photoList.appendChild(itemDiv);
+            });
+            
+            // Adicionar listeners de exclusão
+            photoList.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    deletePhoto(btn.getAttribute('data-id'));
+                });
+            });
+
+        }, (error) => {
+            console.error("Erro ao ouvir atualizações da lista:", error);
+            listLoading.style.display = 'none';
+            photoList.innerHTML = `<p class="text-red-500 text-center py-5">Erro ao carregar lista: ${error.message}</p>`;
+        });
+    }
+
+    window.onload = initializeFirebase;
+</script>
+</body>
+</html>
