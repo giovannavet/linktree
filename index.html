@@ -3,799 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Giovanna Paiva | Veterinária Integrativa</title>
+    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V2)</title>
+    
+    <!-- React & ReactDOM (CDNs corrigidos e atualizados) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel para JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome para ícones -->
+    
+    <!-- FontAwesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        /* Variáveis de Cor fornecidas pelo usuário */
-        :root {
-            --color-rose-nude: #F9EBEA; 
-            --color-rose-deep: #C77D7D; 
-            --color-silver: #A8A8A8; 
-            --color-graphite: #707070; 
-            --color-text-dark: #333333;
-            --color-highlight-bg: #EAEAEA;
-            /* Novas Variáveis para o Chatbot */
-            --color-whatsapp-btn: #25D366;
-            --color-chat-header: var(--color-rose-deep);
-            --color-chat-bg: #F0F0F0;
-        }
-        
-        /* Estilos do body e card */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-rose-nude);
-            color: var(--color-text-dark);
-            min-height: 10vh; /* Ajustado para melhor visualização em desktops */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .card {
-            max-width: 420px;
-            width: 100%;
-            background-color: #FFFFFF;
-            padding: 30px 25px;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            animation: fadeIn 0.8s ease-out;
-        }
-        .logo-container {
-            margin: 0 auto 15px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--color-rose-nude), 0 0 0 6px var(--color-silver);
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-        }
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .button-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 15px 20px;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: var(--color-text-dark);
-            border: 1px solid #E0E0E0;
-            background-color: #F8F8F8;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        .button-link:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .button-link i {
-            margin-right: 12px;
-            font-size: 1.25rem;
-            color: var(--color-rose-deep); 
-        }
-        .btn-highlight {
-            background-color: var(--color-graphite); 
-            color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(112, 112, 112, 0.4);
-        }
-        .btn-highlight i {
-            color: white;
-        }
-        .btn-highlight:hover {
-            background-color: #555555;
-        }
-        .contact-group a {
-            flex-grow: 1;
-            padding: 12px 8px;
-            font-size: 0.9rem;
-            margin: 0 4px;
-            background-color: var(--color-highlight-bg); 
-            border: 1px solid var(--color-silver);
-            color: var(--color-text-dark);
-            flex-basis: 22%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-        }
-        .contact-group a i {
-            margin-right: 0;
-            font-size: 1.1rem;
-            color: var(--color-text-dark);
-            transition: margin-right 0.3s;
-        }
-        .contact-group a span {
-            display: none;
-            white-space: nowrap;
-            overflow: hidden;
-            max-width: 0;
-            transition: max-width 0.3s ease-out, margin-left 0.3s;
-        }
-        .contact-group a:hover span {
-            display: inline;
-            max-width: 100px; /* Limite razoável para a largura */
-            margin-left: 8px;
-            font-weight: 600;
-        }
-        .domiciliar-info {
-            background-color: var(--color-rose-nude);
-            border: 1px solid #F0D0D0;
-            padding: 16px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            text-align: left;
-        }
-        .domiciliar-info h2 {
-            color: var(--color-graphite); 
-        }
-        .domiciliar-info .fas.fa-home {
-            color: var(--color-graphite);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    <!-- Google Fonts: Lato (Sans) e Playfair Display (Serif/Elegância) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
-        /* --- Estilos do Chatbot (Adicionados) --- */
-        .chatbot-modal {
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+    <script>
+        // Configuração do Tailwind com a Paleta Pastel
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: {
+                            bg: '#fbf7f4', // Fundo off-white quente
+                            card: '#ffffff',
+                            primary: '#8ba88e', // Verde sálvia suave (Acolhimento)
+                            secondary: '#e8d5cc', // Bege rosado
+                            text: '#5a5a5a',
+                            accent: '#d4a373' // Marrom claro/terroso para destaque
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
         }
-        .chatbot-modal.open {
-            opacity: 1;
-            visibility: visible;
+    </script>
+
+    <style>
+        /* Estilos globais e animações */
+        body {
+            background-color: #fbf7f4;
+            color: #5a5a5a;
+            /* Detalhe de fundo suave para elegância */
+            background-image: radial-gradient(#e8d5cc 0.5px, transparent 0.5px);
+            background-size: 50px 50px;
         }
-        .chatbot-content {
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            height: 90vh; /* Ajustado para ser mais alto em telas mobile */
-            max-height: 600px;
+        .link-btn:hover {
+            box-shadow: 0 4px 12px rgba(139, 168, 142, 0.5); /* Sombra suave da cor primária */
         }
-        .chatbot-modal.open .chatbot-content {
-            transform: translateY(0);
+        /* Animações para Modais */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { transform: scale(0.95); } to { transform: scale(1); } }
+        .modal-overlay { animation: fadeIn 0.2s ease-out; }
+        .modal-content { animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        
+        /* Estilo para a seção de depoimentos (card) */
+        .testimonial-bg {
+            background-color: #ffffff;
+            background-image: linear-gradient(315deg, #ffffff 0%, #f7f3f1 74%);
         }
-        .chatbot-scroll {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .chatbot-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        #chatbotAnswerText p {
-            margin-bottom: 1rem;
-        }
-        /* Estilos específicos para a tabela de pacotes */
-        .package-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px; /* Espaçamento entre as linhas */
-        }
-        .package-table th, .package-table td {
-            padding: 12px;
-            text-align: center;
-        }
-        .package-table th {
-            background-color: var(--color-rose-deep);
-            color: white;
-            font-size: 0.9rem;
-        }
-        .package-table td {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            font-weight: 600;
-            color: var(--color-text-dark);
-            font-size: 0.95rem;
-        }
-        .package-table tr:first-child th:first-child {
-            border-top-left-radius: 8px;
-        }
-        .package-table tr:first-child th:last-child {
-            border-top-right-radius: 8px;
-        }
-        .package-table .highlight {
-            color: var(--color-rose-deep);
-            font-size: 1.1rem;
-        }
+        /* Custom scrollbar para o modal */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d4a373; border-radius: 4px; }
     </style>
 </head>
-
 <body>
+    <div id="root"></div>
 
-<div class="card">
-    <!-- Imagem de Perfil -->
-    <div class="logo-container">
-        <!-- Substitua o URL abaixo pela imagem real da Dra. Giovanna Paiva se disponível -->
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1730681482135?e=1764806400&v=beta&t=zAKD804fKV4dlh2En9zvNeRv9K_g2O7aT5GBiQ-QaTQ" 
-             alt="Foto de Perfil Dra. Giovanna Paiva" 
-             class="logo-img"
-             onerror="this.onerror=null; this.src='https://placehold.co/120x120/A8A8A8/FFFFFF?text=GP';"
-        >
-    </div>
+    <script type="text/babel">
+        // --- DADOS CONSOLIDADOS DO PROJETO ---
+        const siteData = {
+          "profile": {
+            "name": "Dra. Giovanna Paiva Castelo Branco", 
+            "tagline": "Médica Veterinária | Práticas Integrativas em Natal/RN",
+            "crmv": "CRM-V/RN 2551",
+            // URL DA IMAGEM
+            "image": "https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730681482144?e=1765411200&v=beta&t=2E4wQJ5NH1lIPW3mlvqgf9z2uLsL0JJ-lM-0HW4_7a8" 
+          },
+          "highlight_box": {
+            "title": "Atendimento Domiciliar",
+            "content": "Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar. Atendimento no lar ou em clínicas parceiras conforme necessidade."
+          },
+          "emergency_notice": {
+            "title": "Aviso de Segurança: Tratamentos Integrativos",
+            "content": "As terapias integrativas oferecidas complementam o tratamento médico. Em casos de emergência ou urgência, procure atendimento veterinário convencional imediatamente."
+          },
+          "privacy_policy": {
+            "title": "Política de Privacidade (Resumo)",
+            "content": "Dados de contato utilizados apenas para agendamento e atendimento. Não serão compartilhados sem consentimento. Sua privacidade é nossa prioridade."
+          },
+          "whatsapp_message": "Olá, Sou tutor e gostaria de saber mais sobre:", // Mensagem para o WhatsApp
+          "social": {
+            "whatsapp": "83981628225",
+            "email": "castelobrancover@gmail.com",
+            "instagram": "https://www.instagram.com/giovannavet?igsh=N2lwdDNhbjJ2NHEy"
+          },
+          "buttons": [
+            // Botão de Agendamento em Destaque
+            {
+              "id": "agendamento_link",
+              "type": "link_highlight",
+              "label": "Agende uma Consulta", // Rótulo atualizado
+              "icon": "fab fa-whatsapp",
+            },
+            // Botões Modais
+            {
+              "id": 1,
+              "title": "⭐ Acupuntura Veterinária Integrativa",
+              "icon": "fas fa-leaf",
+              "popup_title": "A Acupuntura: Por que é Fundamental?",
+              "popup_content": "É crucial entender que a Acupuntura, para nós, não é uma \"alternativa\", mas sim uma ciência milenar validada e perfeitamente integrada ao protocolo da Medicina Veterinária Integrativa. Meu foco é reconhecer o seu pet em sua totalidade (corpo, mente e espírito).\n\nA Acupuntura atua diretamente no equilíbrio energético e fisiológico do seu animal, e o maior benefício que eu busco é a melhoria substancial na qualidade de vida.\n\n**Os Benefícios que Vemos no Dia a Dia:**\n\nOs resultados são vastos e clinicamente comprovados. Veja onde a Acupuntura faz a maior diferença:\n\n- **Alívio de Dor Crônica:** Este é um dos pilares. Ao estimular pontos específicos, liberamos endorfinas e neurotransmissores que funcionam como analgésicos naturais. Isso é vital em casos de osteoartrite, displasia e problemas de coluna, diminuindo a dependência de medicamentos convencionais.\n- **Recuperação da Mobilidade:** Muitos animais com rigidez ou dificuldade para se levantar recuperam a autonomia. Eles voltam a caminhar com mais desenvoltura e alegria, melhorando significativamente a função neurológica.\n- **Suporte Emocional:** A técnica é excelente no manejo de ansiedade, estresse e medos. Ela promove um estado de relaxamento profundo e bem-estar psicológico, o que é essencial para pets em ambientes agitados ou com histórico de trauma.\n- **Otimização de Órgãos:** Uso a Acupuntura para dar suporte a quadros de insuficiência renal e problemas gastrointestinais, além de acelerar a recuperação pós-cirúrgica.\n\n**O Cuidado Especializado da Dra. Giovanna Paiva Castelo Branco**\n\nComo Médica Veterinária especializada, garanto a você que a eficácia e, acima de tudo, a segurança do tratamento dependem da especialização do profissional. Acupuntura é Ato Médico: A precisão na escolha dos pontos, o diagnóstico correto e a técnica de inserção das agulhas exigem conhecimento aprofundado de anatomia e fisiologia veterinária. Meu Compromisso: Eu possuo a formação e a experiência necessárias para aplicar a acupuntura de forma segura e ética, garantindo a precisão dos pontos para resultados terapêuticos maximizados."
+            },
+            {
+              "id": 2,
+              "title": "Primeira Sessão: O Roteiro do Bem-Estar",
+              "icon": "fas fa-stethoscope",
+              "popup_title": "Primeira Sessão — O que esperar",
+              "popup_content": "Na primeira consulta realizo uma avaliação completa (histórico, exame físico e análise do estado energético). Em seguida, aplico o protocolo inicial de acupuntura, que pode incluir fotobiomodulação (laser), eletroestimulação e moxabustão, quando indicado. Ao final, você receberá o plano terapêutico detalhado e a frequência sugerida de sessões. Tudo pensado para o máximo conforto e a melhor resposta do seu pet."
+            },
+            {
+              "id": 3,
+              "title": "Pacotes Terapêuticos e Acompanhamento",
+              "icon": "fas fa-spa",
+              "popup_title": "Pacotes Terapêuticos (Bem-Estar Contínuo)",
+              "popup_content": "Ofereço pacotes personalizados (ex.: 3, 5 ou 10 sessões) com descontos progressivos e acompanhamento entre sessões. A indicação da frequência e duração do pacote varia conforme a patologia e a resposta do animal. Geralmente, iniciamos com sessões mais frequentes e ajustamos os intervalos com base na evolução, visando sempre a melhoria contínua da qualidade de vida."
+            },
+            {
+              "id": 5,
+              "title": "Vacinação Domiciliar: Comodidade e Segurança",
+              "icon": "fas fa-syringe",
+              "popup_title": "Vacinação Domiciliar",
+              "popup_content": "Serviço de vacinação com conforto e segurança no domicílio. Agendamento facilitado via Whatsapp. Protocolos rigorosos e personalizados conforme idade, histórico vacinal e indicação clínica. Evite o estresse do seu pet com o atendimento no lar."
+            },
+            {
+              "id": 6,
+              "title": "Consultas de Rotina e Serviços Gerais",
+              "icon": "fas fa-paw",
+              "popup_title": "Consultas e Serviços Gerais",
+              "popup_content": "Avaliações de rotina, acompanhamento de doenças crônicas, cuidados pós-operatórios e orientações preventivas. Quando necessário, realizo encaminhamentos para exames complementares, sempre buscando a solução completa e integrada para a saúde do seu pet."
+            },
+            {
+              "id": 8,
+              "title": "Perguntas Frequentes (FAQ)",
+              "icon": "fas fa-question-circle",
+              "popup_title": "Dúvidas Comuns (FAQ)",
+              "popup_content": "**A acupuntura dói?** Não. A técnica é minimamente invasiva e visa o conforto. Muitos animais relaxam profundamente e até dormem durante a sessão.\n\n**Quantas sessões são necessárias?** Depende da condição. Iniciamos com uma frequência maior (ex: semanal) e ajustamos gradativamente conforme a resposta positiva do pet e a evolução do quadro.\n\n**É seguro misturar com medicamentos?** Sim, quando indicado. A Medicina Integrativa complementa a convencional. A integração é feita com avaliação médica cuidadosa para otimizar resultados e qualidade de vida."
+            },
+            {
+              "id": "galeria",
+              "title": "Galeria de Fotos (Em Breve)",
+              "icon": "fas fa-camera",
+              "popup_title": "Galeria de Fotos e Conteúdo",
+              "popup_content": "Esta seção será em breve atualizada com a galeria de fotos e, futuramente, o logo oficial. Fique ligado no nosso Instagram para acompanhar o dia a dia dos nossos pacientes!"
+            },
+            {
+              "id": 7,
+              "title": "Quem é a Dra. Giovanna Paiva Castelo Branco?",
+              "icon": "fas fa-user-md",
+              "popup_title": "Sobre Dra. Giovanna Paiva Castelo Branco",
+              "popup_content": "Sou médica veterinária com especialização em Acupuntura Veterinária e terapias integrativas. Utilizo a acupuntura, fotobiomodulação (laser), eletroestimulação e moxabustão de forma personalizada.\n\nO objetivo é tratar cada animal como um todo, buscando o equilíbrio e as causas dos problemas, e não apenas aliviar sintomas. Muitas vezes, associo técnicas diferentes em um tratamento, de acordo com as necessidades e respostas de cada animal.\n\nO atendimento é feito no conforto do lar ou em clínicas parceiras, sempre com muita dedicação e pensando no que é melhor para sua família. Estou à disposição para tirar dúvidas, te orientar e contribuir para que seu pet tenha uma vida mais saudável e feliz! 💙"
+            }
+          ],
+          "testimonials": [
+            {
+              "quote": "A melhora da Dona Flor foi incrível após as sessões. Ela está mais ativa e feliz! O atendimento em casa faz toda a diferença.",
+              "author": "Laura S. (Tutora da Flor)"
+            },
+            {
+              "quote": "Profissionalismo e carinho inigualáveis. A Dra. Giovanna realmente olha para o meu gato de forma integral. Recomendo a todos!",
+              "author": "Marcos P. (Tutor do Sushi)"
+            },
+            {
+              "quote": "Os pacotes terapêuticos valeram muito a pena. Conseguimos ajustar a frequência e o meu pet respondeu muito bem. Excelente acompanhamento!",
+              "author": "Ana C. (Tutora do Thor)"
+            }
+          ]
+        };
 
-    <h1 class="text-2xl font-bold text-gray-800">Dra. Giovanna Paiva C. Branco</h1>
-    <p class="text-sm text-gray-600 mb-2">CRMV-RN 2551</p>
-    <p class="text-base font-semibold text-rose-deep mb-3">Medicina Veterinária Integrativa</p>
+        // --- COMPONENTS ---
 
-    <!-- Chamada para Atendimento Domiciliar em Natal/RN -->
-    <div class="domiciliar-info">
-        <h2 class="text-lg font-bold flex items-center mb-1">
-            <i class="fas fa-home mr-2"></i> Atendimento Domiciliar
-        </h2>
-        <p class="text-sm text-gray-700">Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar.</p>
-    </div>
-
-    <!-- Botões de Agendamento em Destaque (Grafite/Prata) -->
-    <h3 class="text-lg font-semibold mb-3 text-gray-700">Jornada de Equilíbrio e Saúde</h3>
-
-    <!-- Agendamento Principal - Destaque em Grafite -->
-    <!-- WHATSAPP ATUALIZADO: 83981628225 (Principal) -->
-    <a href="https://wa.me/5583981628225" class="button-link btn-highlight">
-        <i class="fab fa-whatsapp text-xl"></i>
-        Agendamento Online (WhatsApp)
-    </a>
-
-    <!-- Serviços de Acupuntura (Abre Chatbot) -->
-    <p class="text-sm font-bold text-rose-deep mb-2 mt-4">TERAPIA INTEGRATIVA: ACUPUNTURA</p>
-    <a href="#acupuntura-info" id="openChatbotBtn0" class="button-link">
-        <i class="fas fa-star" style="color: var(--color-rose-deep);"></i>
-        Acupuntura
-    </a>
-    <!-- Botão de Pacotes alterado para abrir o novo tópico 4 -->
-    <a href="#pacotes" id="openChatbotBtn4" class="button-link">
-        <i class="fas fa-hand-holding-heart" style="color: var(--color-rose-deep);"></i>
-        Pacotes Terapêuticos (Bem-Estar)
-    </a>
-
-    <!-- Serviços Essenciais (Inclui Ozonioterapia para Chatbot) -->
-    <p class="text-sm font-bold text-gray-700 mb-2 mt-4">SERVIÇOS ESSENCIAIS</p>
-    
-    <!-- Botão para Ozonioterapia (Abre Chatbot) -->
-    <a href="#Ozonioterapia info" id="openChatbotBtn1" class="button-link">
-        <i class="fas fa-pills text-rose-deep"></i>
-        Ozonioterapia
-    </a>
-    
-    <!-- Vacinação Domiciliar (Abre Chatbot para reforçar importância) -->
-    <a href="#vacinacao-info" id="openChatbotBtn2" class="button-link">
-        <i class="fas fa-syringe text-rose-deep"></i>
-        Vacinação Domiciliar
-    </a>
-
-    <!-- Consultas e Serviços Gerais (Novo Botão) -->
-    <a href="#consultas-gerais-info" id="openChatbotBtn5" class="button-link">
-        <i class="fas fa-stethoscope text-rose-deep"></i>
-        Consultas e Serviços Gerais
-    </a>
-    
-    <!-- Botão 'Sobre Dra. Giovanna' (Abre Chatbot ID 3) -->
-    <a href="#sobre-dra-giovanna" id="openChatbotBtn3" class="button-link">
-        <i class="fas fa-user-md text-rose-deep"></i>
-        Sobre Dra. Giovanna
-    </a>
-
-    <!-- Links de Contato (Pequenos e Minimalistas) -->
-    <p class="text-sm font-bold text-gray-700 mb-2 mt-4">CONECTE-SE</p>
-    <div class="flex justify-between contact-group">
-        <!-- WhatsApp ATUALIZADO: 83981628225 -->
-        <a href="https://wa.me/5583981628225" class="button-link" target="_blank">
-            <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
-        </a>
-        <!-- Instagram ATUALIZADO: https://www.instagram.com/giovannavet?igsh=N2lwdDNhbjJ2NHEy -->
-        <a href="https://www.instagram.com/giovannavet?igsh=N2lwdDNhbjJ2NHEy" class="button-link" target="_blank">
-            <i class="fab fa-instagram"></i><span>Instagram</span>
-        </a>
-        <!-- E-mail ATUALIZADO: castelobrancover@gmail.com -->
-        <a href="mailto:castelobrancover@gmail.com" class="button-link">
-            <i class="fas fa-envelope"></i><span>E-mail</span>
-        </a>
-        <!-- CARTÃO VIRTUAL (Substitui Localização): Leva para a nova página de cartão virtual. -->
-        <a href="cartao_virtual.html" class="button-link" target="_blank">
-            <i class="fas fa-map-marker-alt"></i><span>Cartão</span>
-        </a>
-    </div>
-
-    <!-- Novo Botão EXCLUSIVO PARA ADMIN/GIOVANNA -->
-    <a id="privateLinkBtn" href="link_privativo.html" class="button-link !bg-rose-deep !text-white hover:!bg-rose-600 mt-6" style="display: none;">
-        <i class="fas fa-lock !text-white"></i>
-        Link Privativo (Gestão de Fotos)
-    </a>
-
-    <!-- Exibição do ID de Usuário (Necessário para Firebase) -->
-    <div class="mt-6 text-xs text-center text-gray-400">
-        <p>ID do Usuário (Para Suporte): <span id="userIdDisplay">Carregando...</span></p>
-        <p id="authStatus" class="mt-1 text-xs font-semibold text-gray-500">Status: Anônimo</p>
-    </div>
-</div>
-
-<!-- Modal do Chatbot (mantido) -->
-<div id="chatbotModalOverlay" class="chatbot-modal fixed inset-0 bg-black/60 flex items-end justify-center">
-    <!-- Conteúdo do Chatbot (Sobe da parte inferior da tela) -->
-    <div id="chatbotContent" 
-         class="chatbot-content bg-white w-full max-w-md rounded-t-3xl shadow-2xl flex flex-col">
-        
-        <!-- Header do Chatbot -->
-        <div class="bg-chat-header text-white p-4 rounded-t-3xl flex items-center justify-between shadow-md sticky top-0 z-10" style="background-color: var(--color-chat-header);">
-            <button id="chatbotBackBtn" class="text-white hover:text-gray-300 focus:outline-none" style="display:none;">
-                <i class="fas fa-arrow-left text-xl"></i>
-            </button>
-            <h2 id="chatbotTitle" class="text-xl font-semibold flex-grow text-center">Detalhes do Serviço</h2>
-            <button id="chatbotCloseBtn" class="text-white hover:text-gray-300 focus:outline-none">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Área de Conteúdo (Roleable) -->
-        <div class="flex-grow p-4 overflow-y-auto chatbot-scroll">
-            <div id="chatbotAnswerDiv" class="p-4 rounded-xl shadow-inner min-h-full flex flex-col justify-center" style="display:none; background-color: var(--color-chat-bg);">
-                <!-- Conteúdo de Loading -->
-                <div id="chatbotLoading" class="flex flex-col items-center justify-center py-10">
-                    <i class="fas fa-spinner fa-spin text-4xl" style="color: var(--color-rose-deep);"></i>
-                    <p class="mt-3 text-gray-600">Buscando informações personalizadas...</p>
+        // Função para formatar o texto do modal (suporta \n\n e **negrito**)
+        const FormattedText = ({ text }) => {
+            if (!text) return null;
+            const paragraphs = text.split('\n\n');
+            return (
+                <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
+                    {paragraphs.map((paragraph, idx) => {
+                        const lines = paragraph.split('\n');
+                        return (
+                            <p key={idx}>
+                                {lines.map((line, lineIdx) => {
+                                    // Adiciona suporte a listas (itemize) com ícone
+                                    const parts = line.split(/(\*\*.*?\*\*)/g);
+                                    
+                                    if (line.startsWith('- ')) {
+                                        // Renderiza como item de lista
+                                        const listItemText = line.substring(2).trim();
+                                        return (
+                                            <span key={lineIdx} className="flex items-start mt-1">
+                                                <i className="fas fa-check-circle text-pastel-accent mt-1 mr-2 flex-shrink-0 text-sm"></i>
+                                                <span className="flex-grow">
+                                                    {listItemText.split(/(\*\*.*?\*\*)/g).map((part, partIdx) => {
+                                                        if (part.startsWith('**') && part.endsWith('**')) {
+                                                            return <strong key={partIdx} className="font-bold text-pastel-primary">{part.slice(2, -2)}</strong>;
+                                                        }
+                                                        return part;
+                                                    })}
+                                                </span>
+                                            </span>
+                                        );
+                                    } else {
+                                        // Renderiza como parágrafo normal
+                                        return (
+                                            <span key={lineIdx}>
+                                                {parts.map((part, partIdx) => {
+                                                    if (part.startsWith('**') && part.endsWith('**')) {
+                                                        return <strong key={partIdx} className="font-bold text-pastel-primary">{part.slice(2, -2)}</strong>;
+                                                    }
+                                                    return part;
+                                                })}
+                                                {lineIdx < lines.length - 1 && <br />}
+                                            </span>
+                                        );
+                                    }
+                                })}
+                            </p>
+                        );
+                    })}
                 </div>
-                <!-- Conteúdo da Resposta -->
-                <div id="chatbotAnswerText" class="text-gray-800 leading-relaxed text-sm"></div>
+            );
+        };
+
+        const ProfileHeader = () => (
+            <div className="text-center mb-6">
+                <div className="relative inline-block mb-3 p-1 bg-white rounded-full shadow-xl border border-gray-50">
+                    {/* Foto de perfil circular */}
+                    <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-4 border-pastel-primary/50">
+                        <img 
+                            src={siteData.profile.image} // Usando o link
+                            alt={siteData.profile.name} 
+                            // Fallback para caso o link falhe (imagem de placeholder)
+                            onError={(e) => {e.target.src = "https://placehold.co/150x150/8ba88e/FFFFFF?text=Dra.+GPC";}}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+                <h1 className="text-2xl font-bold font-serif text-gray-800 leading-tight px-4 mt-2">
+                    {siteData.profile.name}
+                </h1>
+                <p className="text-xs font-bold text-pastel-accent mt-1 tracking-wide uppercase">
+                    {siteData.profile.crmv}
+                </p>
+                <p className="text-sm text-gray-500 mt-1">
+                    {siteData.profile.tagline}
+                </p>
             </div>
-        </div>
-        
-        <!-- Rodapé do Chatbot (Ações Finais) -->
-        <div class="p-4 border-t border-gray-200 flex justify-between space-x-3">
-            <button id="finalBackBtn" 
-                    class="w-1/2 button-link !bg-gray-400 !text-white hover:!bg-gray-500 py-3 text-sm">
-                <i class="fas fa-undo mr-2"></i>
-                Fechar Informação
-            </button>
-            <!-- Botão de Agendamento Rápido no Rodapé -->
-            <!-- WHATSAPP ATUALIZADO: 83981628225 -->
-            <a href="https://wa.me/5583981628225" target="_blank" rel="noopener noreferrer"
-               class="w-1/2 button-link !bg-green-500 !text-white hover:!bg-green-600 py-3 text-sm">
-                <i class="fab fa-whatsapp mr-2"></i>
-                Agendar Consulta
-            </a>
-        </div>
-    </div>
-</div>
+        );
 
+        const HighlightCard = () => (
+            <div className="bg-pastel-secondary bg-opacity-30 border border-pastel-secondary/50 rounded-xl p-4 mb-6 text-center shadow-inner relative overflow-hidden">
+                <div className="flex flex-col items-center gap-2">
+                    <i className="fas fa-home text-pastel-accent text-xl"></i>
+                    <div>
+                        <h3 className="font-bold text-gray-700 text-sm mb-1">{siteData.highlight_box.title}</h3>
+                        <p className="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto">
+                            {siteData.highlight_box.content}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
 
-<script type="module">
-    // --- Importações do Firebase ---
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-    
-    // Ativar logging do Firebase para debug (opcional, mas útil)
-    setLogLevel('Debug');
-
-    // --- Variáveis Globais (Fornecidas pelo ambiente Canvas) ---
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-    let app, db, auth;
-    let userId = 'anonimo_nao_autenticado';
-
-    // *** ID do Usuário Administrador (Dra. Giovanna). PRECISA SER O MESMO ID DO TOKEN INICIAL ***
-    // NOTE: Em um ambiente real, este ID viria de uma configuração segura. Aqui, assumimos que o token inicial é dela.
-    let adminId = 'nao-definido-ainda'; 
-
-    // --- Variáveis do Chatbot ---
-    const API_KEY = ""; // Deixe em branco para usar o fornecido pelo ambiente Canvas
-    const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=" + API_KEY;
-    const RETRY_ATTEMPTS = 5;
-    
-    // Estrutura de Dados do Chatbot (Hardcoded answers mantidas)
-    const chatbotData = {
-        topics: [
-            { 
-                id: 0, 
-                title: "Acupuntura Veterinária", 
-                llmQuery: "", 
-                hardcodedAnswer: `<div class="space-y-4 text-gray-700 text-sm">
-    <p class="mb-3">Seja bem-vindo(a) à <i>Medicina Veterinária Integrativa</i>! Eu sou a Dra. Giovanna Paiva, e a Acupuntura é a base da nossa jornada para restaurar o <b>equilíbrio</b> e a <b>vitalidade</b> do seu pet. Este não é um tratamento alternativo, é uma ciência milenar que atua no corpo, na mente e no espírito do animal.</p>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-hand-holding-medical mr-2"></i> Pilares da Acupuntura Terapêutica</h3>
-
-    <ul class="list-none space-y-3">
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-bone text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Alívio de Dor Crônica</p>
-            <p class="ml-5 text-xs">Atuação como um <i>potente analgésico natural</i> para casos de <b>osteoartrite</b>, displasia e dores articulares, reduzindo a necessidade de anti-inflamatórios de uso contínuo.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-running text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Recuperação da Mobilidade</p>
-            <p class="ml-5 text-xs">Restauramos a <i>autonomia</i> e a função neurológica. Pets com rigidez ou paresia voltam a se movimentar com mais <b>desenvoltura</b> e alegria.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-brain text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Suporte Emocional e Comportamental</p>
-            <p class="ml-5 text-xs">Excelente no manejo de <b>ansiedade</b>, estresse e medos, promovendo um estado de <i>relaxamento profundo</i> e bem-estar psicológico.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-heartbeat text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Otimização de Órgãos e Funções</p>
-            <p class="ml-5 text-xs">Suporte vital para quadros de <b>insuficiência renal</b>, problemas gastrointestinais e aceleração da recuperação pós-cirúrgica.</p>
-        </li>
-    </ul>
-
-    <p class="pt-2 text-xs font-semibold text-rose-deep border-t border-rose-nude">A Acupuntura é um <b>Ato Médico</b> que exige o conhecimento especializado que a Dra. Giovanna Paiva oferece no conforto do seu lar.</p>
-</div>`
-            },
-            { 
-                id: 1, 
-                title: "Ozonioterapia", 
-                llmQuery: "", 
-                hardcodedAnswer: `<div class="space-y-4 text-gray-700 text-sm">
-    <p>A <i>Ozonioterapia</i> aplica uma mistura controlada de Oxigênio (O2) e Ozônio (O3) para promover o <b>reequilíbrio sistêmico</b> e a estimulação da <i>vitalidade</i> do seu pet, atuando muito além da supressão de sintomas.</p>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-flask mr-2"></i> Mecanismo de Ação: O Gás da Vida</h3>
-    
-    <ul class="list-none space-y-3">
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-lungs-virus text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Otimização Celular</p>
-            <p class="ml-5 text-xs">Melhora a <b>oxigenação</b> dos tecidos e a <i>circulação sanguínea</i>, energizando o organismo de forma geral.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-shield-alt text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Poder Imunomodulador</p>
-            <p class="ml-5 text-xs">Regula o sistema imunológico, fortalecendo a resposta do corpo contra <b>doenças e infecções</b>.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-hand-sparkles text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Estímulo à Autocura</p>
-            <p class="ml-5 text-xs">Ativa os mecanismos internos de <b>reparo e recuperação</b> do próprio animal, promovendo cura acelerada.</p>
-        </li>
-    </ul>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-pills mr-2"></i> Principais Aplicações</h3>
-    <ul class="list-disc pl-5 space-y-1 text-xs">
-        <li>Ação <b>Anti-inflamatória</b> e <i>Analgésica</i> natural (ideal para dores crônicas).</li>
-        <li>Tratamento eficaz em <b>Dermatologia</b> e <i>Alergias</i> (acelera a cicatrização de lesões).</li>
-        <li>Suporte em quadros de <b>Câncer</b> e doenças autoimunes.</li>
-    </ul>
-
-    <p class="pt-2 text-xs font-semibold text-rose-deep border-t border-rose-nude">Eu garanto a <b>segurança</b> e <b>eficácia</b> terapêutica através da definição exclusiva da dosagem e via de aplicação (retal, tópica, injetável).</p>
-</div>`
-            },
-            {
-                id: 2,
-                title: "Vacinação Domiciliar",
-                llmQuery: "",
-                hardcodedAnswer: `<div class="space-y-4 text-gray-700 text-sm">
-    <p>A <i>Vacinação</i> é o pilar da saúde preventiva e um <b>ato de amor e responsabilidade</b>. Priorizo a Vacinação Domiciliar para garantir o máximo de <i>conforto</i> e <i>segurança</i> para o seu pet.</p>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-house-user mr-2"></i> Benefícios Exclusivos do Domicílio</h3>
-    
-    <ul class="list-none space-y-3">
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-smile text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Zero Estresse</p>
-            <p class="ml-5 text-xs">Elimino o estresse do transporte e do ambiente clínico. Isso é fundamental para filhotes e pets ansiosos, tornando a vacinação uma <b>experiência positiva</b>.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-head-side-mask text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Menor Risco Sanitário</p>
-            <p class="ml-5 text-xs">Seu pet não entra em contato com outros animais doentes, <b>reduzindo</b> drasticamente o risco de <b>contaminação</b> antes que a imunidade seja estabelecida.</p>
-        </li>
-    </ul>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-user-check mr-2"></i> Rigor Técnico e Garantia</h3>
-    <ul class="list-disc pl-5 space-y-1 text-xs">
-        <li><b>Avaliação Pré-Vacinal Completa</b>: A vacina só é aplicada se o pet estiver <i>100% saudável</i>.</li>
-        <li><b>Cadeia de Frio</b>: Rigoroso manejo e controle da temperatura para a <i>máxima eficácia</i> da vacina.</li>
-        <li><b>Protocolo Individualizado</b>: Escolha das vacinas mais indicadas para o <b>perfil</b> e <b>estilo de vida</b> do seu pet.</li>
-    </ul>
-
-    <p class="pt-2 text-xs font-semibold text-rose-deep border-t border-rose-nude">Vacinar em casa é investir na <i>tranquilidade</i> e na <i>longevidade</i> do seu melhor amigo.</p>
-</div>`
-            },
-            { 
-                id: 3, 
-                title: "O Cuidado Especializado da Dra. Giovanna", 
-                llmQuery: "", 
-                hardcodedAnswer: `<div class="space-y-4 text-gray-700 text-sm">
-    <p>Eu sou a Dra. Giovanna Paiva, e meu compromisso é com a <b>excelência</b> e o <b>cuidado humanizado</b>. Minha abordagem vai além da Medicina Veterinária tradicional; eu busco a *causa-raiz* dos problemas para restaurar o equilíbrio e a felicidade do seu pet.</p>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-graduation-cap mr-2"></i> Minha Formação é Sua Garantia</h3>
-
-    <ul class="list-none space-y-3">
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-heart-circle-check text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Especialização em Acupuntura</p>
-            <p class="ml-5 text-xs">A Acupuntura é um <b>Ato Médico</b> que exige *precisão* no diagnóstico e na técnica. Minha formação assegura que seu pet receberá o tratamento mais <b>seguro e eficaz</b>.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-lightbulb text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Visão Integrativa</p>
-            <p class="ml-5 text-xs">Eu uno a *ciência rigorosa* com a sabedoria das terapias naturais (como Ozonioterapia e Acupuntura) para criar um <b>Plano Terapêutico único</b> para a individualidade do seu pet.</p>
-        </li>
-    </ul>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-paw mr-2"></i> O que Você Encontrará na Minha Consulta</h3>
-    <ul class="list-disc pl-5 space-y-1 text-xs">
-        <li><b>Escuta Ativa</b>: Dedico tempo para *ouvir* a rotina, o histórico e as suas percepções sobre o seu pet.</li>
-        <li><b>Avaliação Completa</b>: Analiso o pet como um todo – corpo, mente e ambiente.</li>
-        <li><b>Foco na Longevidade</b>: Meu objetivo é garantir que seu amigo viva mais e, acima de tudo, <b>viva bem</b>.</li>
-    </ul>
-
-    <p class="pt-2 text-xs font-semibold text-rose-deep border-t border-rose-nude">Ao me escolher, você escolhe *confiança*, *especialização* e um tratamento que honra a <b>qualidade de vida</b> do seu animal.</p>
-</div>`
-            },
-            {
-                id: 4, 
-                title: "Pacotes de Acupuntura Domiciliar", 
-                llmQuery: "", 
-                hardcodedAnswer: "Cuidar da saúde crônica do seu pet exige *consistência*, e é por isso que criamos os *Pacotes Terapêuticos Domiciliares*. Nosso objetivo é facilitar a continuidade do tratamento e garantir o máximo de conforto para o seu animal.\n\n**Conforto Incomparável: A Vantagem do Atendimento Domiciliar**\n\nSabemos que a dificuldade de levar o pet para a clínica é um dos principais motivos de interrupção do tratamento. Com o nosso atendimento em casa, eliminamos estresse, minimizamos riscos de contaminação e garantimos que o tratamento seja um momento de relaxamento.\n\nIsso é especialmente vital para pets com:\n* **Comorbidades Crônicas** (como artrose ou problemas cardíacos).\n* **Dificuldade de Transporte** ou medo de carro.\n* **Grande Porte ou Peso Elevado**.\n\nO resultado? *Sessões mais tranquilas*, maior adesão ao tratamento e *resultados terapêuticos acelerados*.\n\n**Conheça os Nossos Pacotes de Acupuntura (Atendimento Domiciliar)**\n\n<table><thead><tr><th>Pacote</th><th>Total de Sessões</th><th>Valor por Sessão*</th></tr></thead><tbody><tr><tr><td>Equilíbrio</td><td>5 sessões</td><td>R$ 90,00</td></tr><tr><td>Bem-Estar</td><td>10 sessões</td><td>R$ 80,00</td></tr><tr><td>Jornada Completa</td><td>15 sessões</td><td>R$ 65,00</td></tr></tbody></table>\n\n<p class='text-xs text-gray-500 mt-2 mb-4'>*O valor final do pacote é a soma do valor por sessão. Válido para atendimento em Natal/RN. Consulte condições de pagamento.</p>\n\nSe você se interessou em conversar mais sobre qual pacote é o ideal para a necessidade do seu pet, me chame aqui no WhatsApp!"
-            },
-            {
-                id: 5, 
-                title: "Consultas e Serviços Gerais", 
-                llmQuery: "", 
-                hardcodedAnswer: `<div class="space-y-4 text-gray-700 text-sm">
-    <p>A consulta comigo vai além do exame clínico. É uma avaliação <b>integrativa</b> e <b>personalizada</b> que busca a causa raiz dos problemas, e não apenas a supressão dos sintomas.</p>
-
-    <h3 class="text-base font-bold text-rose-deep flex items-center mb-2"><i class="fas fa-stethoscope mr-2"></i> Meus Serviços Gerais no Domicílio</h3>
-    
-    <ul class="list-none space-y-3">
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-briefcase-medical text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Consulta Integrativa</p>
-            <p class="ml-5 text-xs">Avaliação completa do histórico, rotina, alimentação e comportamento. O foco é no <b>plano de saúde total</b> do animal.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-vial text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Coleta de Exames</p>
-            <p class="ml-5 text-xs">Coleta de sangue, urina e fezes realizada no <b>ambiente seguro</b> e tranquilo de sua casa, reduzindo o estresse do pet.</p>
-        </li>
-        <li>
-            <p class="font-semibold text-graphite flex items-start"><i class="fas fa-first-aid text-lg mr-2 mt-1" style="color: var(--color-rose-deep);"></i> Manejo de Feridas e Pós-Cirúrgico</p>
-            <p class="ml-5 text-xs">Cuidados essenciais como curativos, remoção de pontos e acompanhamento de <b>recuperação</b> no conforto do lar.</p>
-        </li>
-    </ul>
-
-    <p class="pt-2 text-xs font-semibold text-rose-deep border-t border-rose-nude">Eu trabalho para ser o seu <b>primeiro ponto de contato</b> em saúde veterinária, oferecendo comodidade sem abrir mão da excelência técnica.</p>
-</div>`
-            }
-        ]
-    };
-
-    // --- Elementos do DOM ---
-    const userIdDisplay = document.getElementById('userIdDisplay');
-    const authStatus = document.getElementById('authStatus');
-    const privateLinkBtn = document.getElementById('privateLinkBtn');
-    // ... (outros elementos do chatbot mantidos) ...
-    const chatbotModalOverlay = document.getElementById('chatbotModalOverlay');
-    const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
-    const chatbotBackBtn = document.getElementById('chatbotBackBtn');
-    const finalBackBtn = document.getElementById('finalBackBtn');
-    const chatbotTitle = document.getElementById('chatbotTitle');
-    const chatbotAnswerDiv = document.getElementById('chatbotAnswerDiv');
-    const chatbotLoading = document.getElementById('chatbotLoading');
-    const chatbotAnswerText = document.getElementById('chatbotAnswerText');
-    
-    // Botões de serviço
-    const linkButtons = {
-        btn0: document.getElementById('openChatbotBtn0'), // 0: Acupuntura
-        btn1: document.getElementById('openChatbotBtn1'), // 1: Ozonioterapia
-        btn2: document.getElementById('openChatbotBtn2'), // 2: Vacinação Domiciliar
-        btn3: document.getElementById('openChatbotBtn3'), // 3: Sobre Dra. Giovanna (Atualizado)
-        btn4: document.getElementById('openChatbotBtn4'), // 4: Pacotes Terapêuticos
-        btn5: document.getElementById('openChatbotBtn5'), // 5: Consultas e Serviços Gerais
-    };
-    
-    // --- Funções de Inicialização e Autenticação do Firebase ---
-
-    async function initializeFirebase() {
-        try {
-            if (Object.keys(firebaseConfig).length === 0) {
-                console.error("Firebase Config não está disponível. Rodando em modo não persistente.");
-                userIdDisplay.textContent = 'ERRO: Config Firebase';
-            } else {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-                
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    // O ID do Admin será o ID do usuário logado pelo token inicial
-                    adminId = auth.currentUser?.uid || 'nao-definido-apos-login';
-                } else {
-                    await signInAnonymously(auth);
-                }
-
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        userIdDisplay.textContent = userId;
-                        authStatus.textContent = 'Status: ' + (user.isAnonymous ? 'Anônimo' : 'Autenticado');
-                        
-                        // Lógica para mostrar o botão privativo
-                        if (user.uid === adminId) {
-                            privateLinkBtn.style.display = 'flex';
-                            authStatus.textContent += ' (ADMIN)';
-                        } else {
-                            privateLinkBtn.style.display = 'none';
-                        }
-
-                    } else {
-                        // Gerar um ID temporário se não houver autenticação
-                        userId = crypto.randomUUID();
-                        userIdDisplay.textContent = 'Não Autenticado (ID: ' + userId.substring(0, 8) + '...)';
-                        authStatus.textContent = 'Status: Anônimo';
-                        privateLinkBtn.style.display = 'none';
-                    }
-                    console.log("Firebase Auth State Changed. User ID:", userId);
-                });
-            }
-
-        } catch (e) {
-            console.error("Erro na inicialização ou autenticação do Firebase:", e);
-            userIdDisplay.textContent = 'ERRO: ' + e.message;
-        }
-    }
-    
-    // --- Funções Auxiliares de UI e Chatbot (Mantidas) ---
-
-    function showAnswerView(title) {
-        chatbotTitle.textContent = title;
-        chatbotAnswerDiv.style.display = 'flex'; 
-        chatbotBackBtn.style.display = 'none'; 
-    }
-    
-    function openChatbot(topicId) {
-        chatbotModalOverlay.classList.add('open');
-        currentTopic = chatbotData.topics.find(t => t.id === topicId); 
-        if (currentTopic) {
-            displayAnswer(currentTopic.llmQuery, currentTopic.title, currentTopic.hardcodedAnswer);
-        } else {
-            console.error("Tópico não encontrado:", topicId);
-        }
-    }
-
-    function closeChatbot() {
-        chatbotModalOverlay.classList.remove('open');
-        currentTopic = null;
-        chatbotAnswerText.innerHTML = ''; 
-        chatbotTitle.textContent = "Detalhes do Serviço";
-        chatbotAnswerDiv.style.display = 'none';
-    }
-    
-    async function displayAnswer(query, title, hardcodedText) {
-        const cacheKey = title;
-        showAnswerView(title);
-        
-        // 1. Prioriza Resposta Hardcoded (Texto fornecido pelo usuário)
-        if (hardcodedText) {
-            chatbotLoading.style.display = 'none';
+        const LinkButton = ({ btn, onClick }) => {
+            const isHighlight = btn.type === 'link_highlight';
             
-            // Tratamento específico para o tópico de Pacotes (ID 4) que requer renderização especial de tabela
-            if (currentTopic && currentTopic.id === 4) {
-                 let formattedContent = hardcodedText;
-                 // Formatação para quebras de parágrafo e tags simples de negrito/itálico
-                 formattedContent = formattedContent.replace(/\n\n/g, '<p></p>'); 
-                 formattedContent = formattedContent.replace(/<table>/g, '<table class="package-table">'); 
-                 formattedContent = formattedContent.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); 
-                 formattedContent = formattedContent.replace(/\*(.*?)\*/g, '<i>$1</i>'); 
-                 
-                 // Lógica para listas (mantida para a seção de benefícios dos pacotes)
-                 formattedContent = `<div class="space-y-4 text-sm">${formattedContent.split('<p></p>').map(p => {
-                    if (p.startsWith('* ')) {
-                        return `<ul class="list-disc pl-5 space-y-1">${p.split('\n').map(item => {
-                            if (item.startsWith('* ')) {
-                                let item_formatted = item.substring(2).trim();
-                                item_formatted = item_formatted.replace(/\*(.*?)\*/g, '<i>$1</i>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-                                return `<li>${item_formatted}</li>`;
-                            }
-                            return '';
-                        }).join('')}</ul>`;
-                    }
-                    return p;
-                 }).join('<p></p>')}</div>`;
-
-                 chatbotAnswerText.innerHTML = formattedContent;
-            } else {
-                 // Novo tratamento: Injeta o HTML formatado diretamente para os demais 
-                 chatbotAnswerText.innerHTML = hardcodedText;
+            // Link de Agendamento (WhatsApp)
+            if (isHighlight) {
+                const waLink = `https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`;
+                return (
+                    <a href={waLink} target="_blank" className="link-btn w-full py-4 px-6 rounded-xl flex items-center justify-between transition-all duration-300 transform hover:-translate-y-1 mb-4 shadow-xl border bg-pastel-primary text-white border-transparent hover:bg-[#7a967d] shadow-md no-underline">
+                        <div className="flex items-center gap-4">
+                            <i className={`${btn.icon} text-xl w-6 text-center`}></i>
+                            <span className="font-extrabold text-sm md:text-base text-left tracking-wide uppercase">{btn.label}</span>
+                        </div>
+                        <i className="fas fa-hand-pointer text-sm"></i>
+                    </a>
+                );
             }
 
-            cachedAnswers[cacheKey] = hardcodedText; 
-            return;
+            // Botões Modais
+            const baseClasses = "link-btn w-full py-4 px-6 rounded-xl flex items-center justify-between transition-all duration-300 transform hover:scale-[1.01] mb-4 shadow-sm border";
+            const styleClasses = "bg-white text-gray-600 border-gray-100 hover:border-pastel-secondary hover:shadow-lg";
+
+            return (
+                <button onClick={() => onClick(btn)} className={`${baseClasses} ${styleClasses}`}>
+                    <div className="flex items-center gap-4">
+                        <i className={`${btn.icon} text-lg w-6 text-center text-pastel-primary`}></i>
+                        <span className="font-semibold text-sm text-left text-gray-700">{btn.title}</span>
+                    </div>
+                    <i className="fas fa-chevron-right text-xs text-gray-300"></i>
+                </button>
+            );
+        };
+
+        const TestimonialsSection = () => (
+            <div className="w-full mt-6 mb-8 p-4 pt-6 rounded-2xl testimonial-bg shadow-lg border border-gray-100">
+                <h2 className="text-center font-serif text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                    <i className="fas fa-heart text-pastel-accent text-sm"></i>
+                    O que dizem os tutores
+                </h2>
+                <div className="space-y-4">
+                    {siteData.testimonials.map((testimonial, index) => (
+                        <div key={index} className="bg-white p-4 rounded-xl shadow-md border border-gray-50 transition-all duration-300 hover:shadow-xl">
+                            <p className="text-sm italic text-gray-600 mb-2">
+                                <i className="fas fa-quote-left text-pastel-secondary mr-2"></i>
+                                {testimonial.quote}
+                            </p>
+                            <p className="text-xs font-bold text-right text-pastel-accent mt-2">- {testimonial.author}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const SocialFooter = () => (
+            <div className="mt-8 flex justify-center gap-6">
+                <a href={`https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`} target="_blank" className="w-12 h-12 rounded-full bg-pastel-primary/10 shadow-md flex items-center justify-center text-green-500 hover:text-green-700 hover:scale-110 transition-all text-2xl border border-gray-100">
+                    <i className="fab fa-whatsapp"></i>
+                </a>
+                <a href={siteData.social.instagram} target="_blank" className="w-12 h-12 rounded-full bg-pastel-primary/10 shadow-md flex items-center justify-center text-pink-500 hover:text-pink-700 hover:scale-110 transition-all text-2xl border border-gray-100">
+                    <i className="fab fa-instagram"></i>
+                </a>
+                <a href={`mailto:${siteData.social.email}`} className="w-12 h-12 rounded-full bg-pastel-primary/10 shadow-md flex items-center justify-center text-blue-500 hover:text-blue-700 hover:scale-110 transition-all text-2xl border border-gray-100">
+                    <i className="far fa-envelope"></i>
+                </a>
+            </div>
+        );
+
+        const FooterNotices = () => (
+            <div className="w-full mt-8 p-4 text-center border-t border-gray-200">
+                {/* Aviso de Segurança */}
+                <div className="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                    <h4 className="text-xs font-bold text-yellow-700 mb-1">{siteData.emergency_notice.title}</h4>
+                    <p className="text-[10px] text-gray-600 leading-tight">{siteData.emergency_notice.content}</p>
+                </div>
+                {/* Política de Privacidade */}
+                <div className="p-2">
+                    <h4 className="text-xs font-bold text-gray-500 mb-1">{siteData.privacy_policy.title}</h4>
+                    <p className="text-[10px] text-gray-500 leading-tight">{siteData.privacy_policy.content}</p>
+                </div>
+                <div className="mt-4 text-center">
+                    <p className="text-[10px] text-gray-400 font-light">
+                        © {new Date().getFullYear()} {siteData.profile.name} | Desenvolvido com foco no Bem-Estar Animal
+                    </p>
+                </div>
+            </div>
+        );
+
+        const Modal = ({ data, onClose }) => {
+            React.useEffect(() => {
+                const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
+                window.addEventListener('keydown', handleEsc);
+                document.body.style.overflow = 'hidden';
+                return () => {
+                    document.body.style.overflow = 'unset';
+                    window.removeEventListener('keydown', handleEsc);
+                };
+            }, [onClose]);
+
+            if (!data) return null;
+
+            // Determina se deve mostrar o botão de contato (esconde na Galeria)
+            const showContactButton = data.id !== 'galeria';
+
+            return (
+                <div 
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-800 bg-opacity-40 backdrop-blur-sm modal-overlay"
+                    onClick={onClose}
+                >
+                    <div 
+                        className="bg-white rounded-2xl w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden modal-content"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        <div className="px-6 py-4 bg-pastel-bg border-b border-gray-100 flex justify-between items-center shrink-0">
+                            <h3 className="font-serif font-bold text-gray-800 pr-4 text-xl">{data.popup_title}</h3>
+                            <button onClick={onClose} className="w-8 h-8 rounded-full bg-white text-gray-400 hover:text-pastel-accent flex items-center justify-center transition-colors shadow-sm border border-gray-100">
+                                <i className="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <div className="p-6 overflow-y-auto custom-scroll">
+                            {/* Componente para formatação do texto do modal */}
+                            <FormattedText text={data.popup_content} />
+                        </div>
+
+                        {showContactButton && (
+                            <div className="p-4 bg-gray-50 border-t border-gray-100 shrink-0 text-center">
+                                <a 
+                                    href={`https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`}
+                                    target="_blank"
+                                    className="block w-full bg-pastel-primary hover:bg-[#7a967d] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-lg text-sm uppercase tracking-wide transform hover:scale-[1.01]"
+                                >
+                                    <i className="fab fa-whatsapp mr-2"></i> Agende Agora
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- COMPONENTE PRINCIPAL ---
+        const App = () => {
+            const [activeModal, setActiveModal] = React.useState(null);
+
+            // Código para garantir que o link de destaque tenha o URL correto
+            const buttonsWithLinks = siteData.buttons.map(btn => {
+                if (btn.type === 'link_highlight') {
+                    return { ...btn, url: `https://wa.me/55${siteData.social.whatsapp}` };
+                }
+                return btn;
+            });
+
+            return (
+                <div className="min-h-screen flex flex-col items-center py-10 px-4 max-w-md mx-auto relative z-10">
+                    <ProfileHeader />
+                    <HighlightCard />
+                    
+                    <div className="w-full">
+                        <div className="text-xs text-center text-gray-400 mb-4 font-serif font-light tracking-widest uppercase">
+                            Excelência e Acolhimento em Medicina Veterinária Integrativa
+                        </div>
+                        
+                        {buttonsWithLinks.map(btn => (
+                            <LinkButton key={btn.id} btn={btn} onClick={setActiveModal} />
+                        ))}
+                    </div>
+                    
+                    <TestimonialsSection />
+                    <SocialFooter />
+                    <FooterNotices />
+
+                    {activeModal && (
+                        <Modal data={activeModal} onClose={() => setActiveModal(null)} />
+                    )}
+                </div>
+            );
+        };
+
+        // Montagem do Aplicativo no DOM (Usando createRoot)
+        const container = document.getElementById('root');
+        if (container) {
+            const root = ReactDOM.createRoot(container);
+            root.render(<App />);
+        } else {
+            console.error("Erro: O elemento com id 'root' não foi encontrado no DOM.");
         }
-
-
-        // 2. Verifica Cache para Respostas LLM (apenas se não houver hardcoded)
-        if (cachedAnswers[cacheKey]) {
-            chatbotLoading.style.display = 'none';
-            chatbotAnswerText.innerHTML = cachedAnswers[cacheKey];
-            return;
-        }
-
-        chatbotLoading.style.display = 'flex';
-        chatbotAnswerText.innerHTML = '';
-
-        try {
-            // 3. Busca LLM (Este bloco está inativo, pois todos os tópicos estão hardcoded)
-            // ... (código de chamada LLM omitido por não ser o foco da atualização) ...
-            chatbotLoading.style.display = 'none';
-            chatbotAnswerText.innerHTML = `<p class="text-red-600 font-semibold">Função de LLM temporariamente inativa.</p>`;
-        } catch (error) {
-            chatbotLoading.style.display = 'none';
-            console.error("Erro na chamada da API:", error);
-            chatbotAnswerText.innerHTML = `<p class="text-red-600 font-semibold">Ocorreu um erro ao buscar as informações. Por favor, tente novamente mais tarde.</p><p class="mt-2 text-sm text-gray-500">Detalhes: ${error.message}</p>`;
-        }
-    }
-    
-    // --- Event Listeners e Inicialização ---
-
-    window.onload = () => {
-        initializeFirebase();
-    };
-    
-    // 0: Acupuntura
-    if(linkButtons.btn0) {
-        linkButtons.btn0.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(0); 
-        });
-    }
-
-    // 1: Ozonioterapia
-    if(linkButtons.btn1) {
-        linkButtons.btn1.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(1); 
-        });
-    }
-    
-    // 2: Vacinação Domiciliar
-    if(linkButtons.btn2) {
-        linkButtons.btn2.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(2); 
-        });
-    }
-    
-    // 3: Sobre Dra. Giovanna
-    if(linkButtons.btn3) {
-        linkButtons.btn3.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(3); 
-        });
-    }
-    
-    // 4: Pacotes Terapêuticos
-    if(linkButtons.btn4) {
-        linkButtons.btn4.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(4); 
-        });
-    }
-
-    // 5: Consultas e Serviços Gerais
-    if(linkButtons.btn5) {
-        linkButtons.btn5.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChatbot(5); 
-        });
-    }
-
-
-    // Botões de fechar e voltar: fecham o modal
-    chatbotCloseBtn.addEventListener('click', closeChatbot);
-    finalBackBtn.addEventListener('click', closeChatbot); 
-
-    // Fecha o modal ao clicar no overlay (área escura) - CÓDIGO COMPLETADO
-    chatbotModalOverlay.addEventListener('click', (e) => {
-        if (e.target === chatbotModalOverlay) {
-            closeChatbot();
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
