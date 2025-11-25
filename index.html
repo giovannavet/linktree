@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V13)</title>
+    <title>Dra. Giovanna Castelo Branco | Integrativa (V17)</title>
     
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -83,17 +83,18 @@
         // --- DADOS CONSOLIDADOS DO PROJETO ---
         const siteData = {
           "profile": {
-            "name": "Dra. Giovanna Paiva Castelo Branco", 
-            "tagline": "Médica Veterinária | Práticas Integrativas em Natal/RN",
-            "crmv": "CRM-V/RN 2551",
-            // Foto revertida para a solicitada pelo usuário
-            "image": "https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730681482144?e=1765411200&v=beta&t=2E4wQJ5NH1lIPW3mlvqgf9z2uLsL0JJ-lM-0HW4_7a8" 
+            "name": "Dra. Giovanna Castelo Branco", 
+            "crmv": "CRMV/RN 2551",
+            "image": "https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730681482144?e=1765411200&v=beta&t=2E4wQJ5NH1lIPW3mlvqgf9z2uLsL0JJ-lM-0HW4_7a8", 
+            // NOVO: Linha principal e sub-linha de chamada
+            "tagline_main": "Acupuntura | Fotobiomodulação | Eletroestimulação", 
+            "tagline_sub": "Transformo vidas com recuperação, saúde e equilíbrio",
           },
           "highlight_box": {
             "title": "Atendimento Domiciliar",
+            // NOVO: Conteúdo atualizado e mais conciso
             "content": "Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar."
           },
-          // O bloco "emergency_notice" foi removido conforme solicitação
           "privacy_policy": {
             "title": "Política de Privacidade (Resumo)",
             "content": "Dados de contato utilizados apenas para agendamento e atendimento. Não serão compartilhados sem consentimento. Sua privacidade é nossa prioridade."
@@ -101,7 +102,7 @@
           "whatsapp_message": "Olá, Sou tutor e gostaria de saber mais sobre:", // Mensagem para o WhatsApp
           "social": {
             "whatsapp": "83981628225",
-            "email": "castelobrancover@gmail.com",
+            "email": "castelobrancovet@gmail.com", 
             "instagram": "https://www.instagram.com/giovannavet?igsh=N2lwdDNhbjJ2NHEy"
           },
           "buttons": [
@@ -122,17 +123,17 @@
             },
             {
               "id": 2,
-              "title": "Primeira Sessão: O Roteiro do Bem-Estar",
+              "title": "Primeira Sessão: Abordagem Integrativa",
               "icon": "fas fa-stethoscope",
-              "popup_title": "Primeira Sessão — O que esperar",
-              "popup_content": "Na primeira consulta realizo uma avaliação completa (histórico, exame físico e análise do estado energético). Em seguida, aplico o protocolo inicial de acupuntura, que pode incluir fotobiomodulação (laser), eletroestimulação e moxabustão, quando indicado. Ao final, você receberá o plano terapêutico detalhado e a frequência sugerida de sessões. Tudo pensado para o máximo conforto e a melhor resposta do seu pet."
+              "popup_title": "Primeira Sessão — O Roteiro do Bem-Estar",
+              "popup_content": "A primeira sessão é dedicada à construção de um plano de tratamento único. Inclui:\n\n- **Avaliação Completa:** Histórico do paciente, exame físico detalhado e análise energética.\n- **Protocolo Inicial:** Aplicação das primeiras técnicas integrativas (acupuntura, laser, eletroestimulação, moxabustão, se necessário).\n- **Plano Terapêutico:** Recebimento do plano detalhado e sugestão de frequência, visando o máximo conforto e a melhor resposta do seu pet. (Detalhes completos no destaque acima)."
             },
             {
               "id": 3,
               "title": "Pacotes Terapêuticos e Acompanhamento",
               "icon": "fas fa-spa",
               "popup_title": "Pacotes Terapêuticos (Bem-Estar Contínuo)",
-              "popup_content": "Ofereço pacotes personalizados (ex.: 3, 5 ou 10 sessões) com descontos progressivos e acompanhamento entre sessões. A indicação da frequência e duração do pacote varia conforme a patologia e a resposta do animal. Geralmente, iniciamos com sessões mais frequentes e ajustamos os intervalos com base na evolução, visando sempre a melhoria contínua da qualidade de vida."
+              "popup_content": "No meu atendimento, ofereço sessões avulsas ou pacotes personalizados (ex.: 3, 5 ou 10 sessões) com descontos progressivos e acompanhamento entre sessões. A indicação da frequência e duração do pacote varia conforme a patologia e a resposta do animal. Geralmente, iniciamos com sessões mais frequentes e ajustamos os intervalos a partir da evolução, visando sempre a melhoria contínua da qualidade de vida."
             },
             {
               "id": 5,
@@ -142,18 +143,11 @@
               "popup_content": "Serviço de vacinação com conforto e segurança no domicílio. Agendamento facilitado via Whatsapp. Protocolos rigorosos e personalizados conforme idade, histórico vacinal e indicação clínica. Evite o estresse do seu pet com o atendimento no lar."
             },
             {
-              "id": 6,
-              "title": "Consultas de Rotina e Serviços Gerais",
-              "icon": "fas fa-paw",
-              "popup_title": "Consultas e Serviços Gerais",
-              "popup_content": "Avaliações de rotina, acompanhamento de doenças crônicas, cuidados pós-operatórios e orientações preventivas. Quando necessário, realizo encaminhamentos para exames complementares, sempre buscando a solução completa e integrada para a saúde do seu pet."
-            },
-            {
               "id": 7,
-              "title": "Quem é a Dra. Giovanna Paiva Castelo Branco?",
+              "title": "Sobre Dra. Giovanna Castelo Branco",
               "icon": "fas fa-user-md",
-              "popup_title": "Sobre Dra. Giovanna Paiva Castelo Branco",
-              "popup_content": "Sou médica veterinária com especialização em Acupuntura Veterinária e terapias integrativas. Utilizo a acupuntura, fotobiomodulação (laser), eletroestimulação e moxabustão de forma personalizada.\n\nO objetivo é tratar cada animal como um todo, buscando o equilíbrio e as causas dos problemas, e não apenas aliviar sintomas. Muitas vezes, associo técnicas diferentes em um tratamento, de acordo com as necessidades e respostas de cada animal.\n\nO atendimento é feito no conforto do lar ou em clínicas parceiras, sempre com muita dedicação e pensando no que é melhor para sua família. Estou à disposição para tirar dúvidas, te orientar e contribuir para que seu pet tenha uma vida mais saudável e feliz! 💙"
+              "popup_title": "Sobre Dra. Giovanna Castelo Branco",
+              "popup_content": "Sou médica veterinária, mestranda em Ciência Animal pela UFPB/IIN, e possuo especialização em Acupuntura Veterinária e terapias integrativas. Utilizo a acupuntura, fotobiomodulação, eletroestimulação e moxabustão de forma personalizada para cada paciente.\n\nO objetivo é tratar seu animal como um todo, buscando o equilíbrio e as causas dos problemas, e não apenas aliviar sintomas. Muitas vezes, associo técnicas diferentes em um tratamento, de acordo com as necessidades e respostas de cada animal.\n\nO atendimento é feito no conforto do lar ou em clínicas parceiras, sempre com dedicação e pensando no que é melhor para sua família. Estou à disposição para tirar dúvidas, te orientar e contribuir para que seu pet tenha uma vida mais saudável e feliz. 🩷"
             }
           ],
           "testimonials": [
@@ -238,7 +232,7 @@
                             src={siteData.profile.image} // Usando a URL da foto fornecida
                             alt={siteData.profile.name} 
                             // Fallback para caso o link falhe (imagem de placeholder)
-                            onError={(e) => {e.target.src = "https://placehold.co/150x150/8ba88e/FFFFFF?text=Dra.+GPC";}}
+                            onError={(e) => {e.target.src = "https://placehold.co/150x150/8ba88e/FFFFFF?text=Dra.+GCB";}}
                             className="w-full h-full object-cover"
                         />
                     </div>
@@ -249,8 +243,12 @@
                 <p className="text-sm font-bold text-pastel-accent mt-1 tracking-wider uppercase">
                     {siteData.profile.crmv}
                 </p>
-                <p className="text-base text-gray-500 mt-1">
-                    {siteData.profile.tagline}
+                {/* NOVO: Linha principal e sub-linha renderizadas separadamente */}
+                <p className="text-base font-semibold text-gray-700 mt-1"> 
+                    {siteData.profile.tagline_main}
+                </p>
+                <p className="text-sm text-pastel-primary mt-1"> 
+                    {siteData.profile.tagline_sub}
                 </p>
             </div>
         );
@@ -263,6 +261,7 @@
                         <i className="fas fa-home text-pastel-accent mr-1"></i>
                         {siteData.highlight_box.title}
                     </h3>
+                    {/* Conteúdo atualizado, mais conciso */}
                     <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
                         {siteData.highlight_box.content}
                     </p>
@@ -318,7 +317,6 @@
 
         const FooterNotices = () => (
             <div className="w-full mt-8 p-4 text-center border-t border-gray-200">
-                {/* O bloco "Aviso de Segurança" foi removido */}
                 
                 {/* Política de Privacidade */}
                 <div className="p-2">
@@ -410,12 +408,15 @@
                 setSelectedModal(null);
             };
 
+            // Filtra os botões, removendo o de ID 6 (Consultas de Rotina)
+            const filteredButtons = siteData.buttons.filter(btn => btn.id !== 6);
+
             return (
                 // O padding garante que não fique encostado nas bordas
                 <div className="p-4"> 
                     <div className="w-full max-w-lg mx-auto">
                         
-                        {/* 1. Header (Foto, Nome, CRMV) */}
+                        {/* 1. Header (Foto, Nome, CRMV, Taglines) */}
                         <ProfileHeader />
 
                         {/* 2. Caixa de Destaque */}
@@ -423,7 +424,7 @@
 
                         {/* 3. Botões de Ação */}
                         <div className="space-y-3 mb-6">
-                            {siteData.buttons.map(btn => (
+                            {filteredButtons.map(btn => (
                                 <LinkButton 
                                     key={btn.id} 
                                     btn={btn} 
