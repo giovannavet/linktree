@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Giovanna Castelo Branco | Integrativa (V17)</title>
+    <title>Dra. Giovanna Castelo Branco | Integrativa (V18)</title>
     
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -83,7 +83,8 @@
         // --- DADOS CONSOLIDADOS DO PROJETO ---
         const siteData = {
           "profile": {
-            "name": "Dra. Giovanna Castelo Branco", 
+            "name": "Giovanna Castelo Branco", // NOME ATUALIZADO (REMOVIDO "Dra.")
+            "title_extra": "Médica Veterinária", // CAMPO DO TÍTULO EXTRA
             "crmv": "CRMV/RN 2551",
             "image": "https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730681482144?e=1765411200&v=beta&t=2E4wQJ5NH1lIPW3mlvqgf9z2uLsL0JJ-lM-0HW4_7a8", 
             // Linha principal e sub-linha de chamada
@@ -119,18 +120,15 @@
               "title": "Meu Trabalho: conforto, equilíbrio e qualidade de vida",
               "icon": "fas fa-leaf",
               "popup_title": "Meu Trabalho: Abordagem Integrativa Completa",
-              // Conteúdo atualizado com foco na primeira consulta e listagem para ícones
               "popup_content": "**Na Primeira Consulta:**\n\nRealizo uma avaliação completa (histórico, exame físico e análise do estado energético) do seu pet para entender suas necessidades.\n\n- **Protocolo Personalizado:** Em seguida, iniciamos o protocolo inicial de Medicina Integrativa, podendo incluir diversas técnicas como: acupuntura, fotobiomodulação (laserpuntura), eletroestimulação e moxabustão, a depender de cada caso.\n- **Plano Detalhado:** Ao final, você receberá o plano terapêutico detalhado e a frequência sugerida de sessões, tudo pensado para o melhor conforto e resposta do seu pet." 
             },
-            // BOTÃO COM CONTEÚDO ATUALIZADO (ID 2)
             {
               "id": 2,
-              "title": "Benefícios da Medicina Integrativa", // TÍTULO NOVO
+              "title": "Benefícios da Medicina Integrativa", 
               "icon": "fas fa-stethoscope",
-              "popup_title": "Benefícios da Medicina Integrativa", // TÍTULO NOVO
+              "popup_title": "Benefícios da Medicina Integrativa", 
               "popup_content": "A Medicina Veterinária Integrativa une o melhor da ciência moderna às terapias complementares, oferecendo uma visão ampla e completa do cuidado animal. Ela valoriza não apenas a doença, mas o indivíduo como um todo (corpo, mente e espírito) promovendo equilíbrio e bem-estar. Diante disso, utilizo a Acupuntura e outras técnicas integrativas para restaurar a vitalidade, reduzir desconfortos e melhorar a qualidade de vida do seu pet.\n\n**Benefícios para o seu Pet:**\n- Alívio da dor e melhora da mobilidade: Atuação essencial no manejo de dores agudas e crônicas, como osteoartrite, displasia, alterações de coluna e mais. A acupuntura associada a eletroestimulação (TENS/FES/Russa/Aussie) ou eletroacupuntura, potencializa a liberação de analgésicos naturais e favorece a recuperação da autonomia e da alegria ao caminhar.\n- Aceleração da cicatrização e analgesia: A fotobiomodulação atua de forma não invasiva na regeneração tecidual, reduz inflamações, acelera a cicatrização e contribui significativamente para o alívio da dor.\n- Suporte emocional: Favorece um estado de relaxamento, auxiliando os pets com ansiedade, estresse, medos e comportamentos reativos.\n- Otimização interna e recuperação acelerada: Contribui para a o preparo pré-cirúrgico e recuperação pós-cirúrgica, melhora da circulação, suporte imunológico e equilíbrio de órgãos vitais.\n\n**Cuidado Individualizado e Ético:**\n\nAtuo com responsabilidade, conhecimento técnico e constante atualização. Cada protocolo é planejado de forma personalizada, respeitando a condição clínica e o bem-estar do seu pet, a fim de oferecer resultados terapêuticos seguros, eficientes e integrativos."
             },
-            // FIM DO BOTÃO ATUALIZADO
             {
               "id": 3,
               "title": "Pacotes Terapêuticos e Acompanhamento",
@@ -140,17 +138,18 @@
             },
             {
               "id": 5,
-              "title": "Vacinação Domiciliar: Comodidade e Segurança",
+              "title": "Outros Serviços", 
               "icon": "fas fa-syringe",
-              "popup_title": "Vacinação Domiciliar",
-              "popup_content": "Serviço de vacinação com conforto e segurança no domicílio. Agendamento facilitado via Whatsapp. Protocolos rigorosos e personalizados conforme idade, histórico vacinal e indicação clínica. Evite o estresse do seu pet com o atendimento no lar."
+              "popup_title": "Outros Serviços", 
+              // CONTEÚDO ATUALIZADO COM FORMATO DE LISTA
+              "popup_content": "- Serviço de vacinação com conforto e segurança no domicílio, utilizando protocolos vacinais personalizados conforme a idade, histórico vacinal e necessidades clínicas do pet.\n\n- Emissão de atestados de viagem mediante avaliação e exames complementares laboratoriais, garantindo que seu animal esteja regularizado e apto para deslocamentos nacionais ou internacionais."
             },
             {
               "id": 7,
-              "title": "Sobre Dra. Giovanna Castelo Branco",
+              "title": "Sobre Mim", // RÓTULO ATUALIZADO
               "icon": "fas fa-user-md",
-              "popup_title": "Sobre Dra. Giovanna Castelo Branco",
-              "popup_content": "Sou médica veterinária, mestranda em Ciência Animal pela UFPB/IIN, e possuo especialização em Acupuntura Veterinária e terapias integrativas. Utilizo a acupuntura, fotobiomodulação, eletroestimulação e moxabustão de forma personalizada para cada paciente.\n\nO objetivo é tratar seu animal como um todo, buscando o equilíbrio e as causas dos problemas, e não apenas aliviar sintomas. Muitas vezes, associo técnicas diferentes em um tratamento, de acordo com as necessidades e respostas de cada animal.\n\nO atendimento é feito no conforto do lar ou em clínicas parceiras, sempre com dedicação e pensando no que é melhor para sua família. Estou à disposição para tirar dúvidas, te orientar e contribuir para que seu pet tenha uma vida mais saudável e feliz. 🩷"
+              "popup_title": "Sobre Mim", // TÍTULO POP-UP ATUALIZADO
+              "popup_content": "Médica veterinária, mestranda em Ciência Animal pela UFPB ⇆ Instituto Internacional de Neurociências, com especialização em Acupuntura Veterinária e Terapias Integrativas. Nos meus atendimentos, utilizo acupuntura, eletroacupuntura, fotobiomodulação, eletroestimulação e moxabustão de forma personalizada para cada paciente.\n\nMeu trabalho tem como foco tratar o animal de maneira integral, buscando equilíbrio e entendendo as causas dos problemas, e não apenas aliviando sintomas. Sempre que necessário, combino diferentes técnicas conforme as necessidades e a resposta individual de cada pet.\n\nOs atendimentos são realizados no conforto do lar ou em clínicas parceiras, com dedicação e atenção ao melhor para cada família. Estou sempre disponível para esclarecer dúvidas, orientar tutores e contribuir para que os animais tenham uma vida mais saudável e feliz. 🩷" // CONTEÚDO ATUALIZADO
             }
           ],
           "testimonials": [
@@ -243,14 +242,22 @@
                 <h1 className="text-2xl font-bold font-serif text-gray-800 leading-tight px-4 mt-2">
                     {siteData.profile.name}
                 </h1>
-                <p className="text-sm font-bold text-pastel-accent mt-1 tracking-wider uppercase">
+                
+                {/* Linha "Médica Veterinária" (title_extra) - Cor Primária (verde sálvia) */}
+                <p className="text-sm font-semibold text-pastel-primary mt-1 tracking-wider uppercase">
+                    {siteData.profile.title_extra}
+                </p>
+
+                {/* Linha "CRMV/RN 2551" - NOVO ESTILO: Cor Primária (verde sálvia) e peso bold */}
+                <p className="text-sm font-bold text-pastel-primary mt-1 tracking-wider uppercase">
                     {siteData.profile.crmv}
                 </p>
-                {/* Linha principal e sub-linha renderizadas separadamente */}
+                {/* Linha principal (tagline_main) - Sem alteração */}
                 <p className="text-base font-semibold text-gray-700 mt-1"> 
                     {siteData.profile.tagline_main}
                 </p>
-                <p className="text-sm text-pastel-primary mt-1"> 
+                {/* Linha sub (tagline_sub) - Cor Gray-700 e Semi-bold */}
+                <p className="text-sm font-semibold text-gray-700 mt-1"> 
                     {siteData.profile.tagline_sub}
                 </p>
             </div>
