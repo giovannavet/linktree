@@ -313,7 +313,8 @@
         };
 
         const SocialFooter = () => (
-            <div className="mt-8 flex justify-center gap-6">
+            // Aumentei o espaçamento superior para compensar a remoção do FooterNotices
+            <div className="mt-10 flex justify-center gap-6 pb-6"> 
                 <a href={`https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`} target="_blank" className="w-12 h-12 rounded-full bg-pastel-primary/10 shadow-md flex items-center justify-center text-green-500 hover:text-green-700 hover:scale-110 transition-all text-2xl border border-gray-100">
                     <i className="fab fa-whatsapp"></i>
                 </a>
@@ -326,22 +327,24 @@
             </div>
         );
 
+        /* // Componente FooterNotices Removido para ocultar o texto de rodapé
         const FooterNotices = () => (
             <div className="w-full mt-8 p-4 text-center border-t border-gray-200">
                 
-                {/* Política de Privacidade */}
+                // Política de Privacidade
                 <div className="p-2">
                     <h4 className="text-xs font-bold text-gray-500 mb-1">{siteData.privacy_policy.title}</h4>
                     <p className="text-xs text-gray-500 leading-tight">{siteData.privacy_policy.content}</p>
                 </div>
                 <div className="mt-4 text-center">
-                    {/* Copyright */}
+                    // Copyright
                     <p className="text-xs text-gray-400 font-light">
                         © {new Date().getFullYear()} {siteData.profile.name} | Desenvolvido com foco no Bem-Estar Animal
                     </p>
                 </div>
             </div>
-        );
+        ); 
+        */
 
         const Modal = ({ data, onClose }) => {
             React.useEffect(() => {
@@ -465,8 +468,8 @@
                         {/* 5. Footer Social */}
                         <SocialFooter />
 
-                        {/* 6. Notices / Rodapé */}
-                        <FooterNotices />
+                        {/* 6. Notices / Rodapé - REMOVIDO DA RENDERIZAÇÃO */}
+                        {/* <FooterNotices /> */}
                     </div>
 
                     {/* Modal */}
