@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V2)</title>
+    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V7)</title>
     
     <!-- React & ReactDOM (CDNs corrigidos e atualizados) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -63,7 +63,7 @@
         .modal-overlay { animation: fadeIn 0.2s ease-out; }
         .modal-content { animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        /* Estilo para a seção de depoimentos (card) */
+        /* Estilo para a seção de depoimentos (card) - Mantido caso queira reativar */
         .testimonial-bg {
             background-color: #ffffff;
             background-image: linear-gradient(315deg, #ffffff 0%, #f7f3f1 74%);
@@ -89,7 +89,7 @@
           },
           "highlight_box": {
             "title": "Atendimento Domiciliar",
-            "content": "Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar. Atendimento no lar ou em clínicas parceiras conforme necessidade."
+            "content": "Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar."
           },
           "emergency_notice": {
             "title": "Aviso de Segurança: Tratamentos Integrativos",
@@ -110,7 +110,7 @@
             {
               "id": "agendamento_link",
               "type": "link_highlight",
-              "label": "Agende uma Consulta", // Rótulo atualizado
+              "label": "Agende uma Consulta",
               "icon": "fab fa-whatsapp",
             },
             // Botões Modais
@@ -118,8 +118,8 @@
               "id": 1,
               "title": "⭐ Acupuntura Veterinária Integrativa",
               "icon": "fas fa-leaf",
-              "popup_title": "A Acupuntura: Por que é Fundamental?",
-              "popup_content": "É crucial entender que a Acupuntura, para nós, não é uma \"alternativa\", mas sim uma ciência milenar validada e perfeitamente integrada ao protocolo da Medicina Veterinária Integrativa. Meu foco é reconhecer o seu pet em sua totalidade (corpo, mente e espírito).\n\nA Acupuntura atua diretamente no equilíbrio energético e fisiológico do seu animal, e o maior benefício que eu busco é a melhoria substancial na qualidade de vida.\n\n**Os Benefícios que Vemos no Dia a Dia:**\n\nOs resultados são vastos e clinicamente comprovados. Veja onde a Acupuntura faz a maior diferença:\n\n- **Alívio de Dor Crônica:** Este é um dos pilares. Ao estimular pontos específicos, liberamos endorfinas e neurotransmissores que funcionam como analgésicos naturais. Isso é vital em casos de osteoartrite, displasia e problemas de coluna, diminuindo a dependência de medicamentos convencionais.\n- **Recuperação da Mobilidade:** Muitos animais com rigidez ou dificuldade para se levantar recuperam a autonomia. Eles voltam a caminhar com mais desenvoltura e alegria, melhorando significativamente a função neurológica.\n- **Suporte Emocional:** A técnica é excelente no manejo de ansiedade, estresse e medos. Ela promove um estado de relaxamento profundo e bem-estar psicológico, o que é essencial para pets em ambientes agitados ou com histórico de trauma.\n- **Otimização de Órgãos:** Uso a Acupuntura para dar suporte a quadros de insuficiência renal e problemas gastrointestinais, além de acelerar a recuperação pós-cirúrgica.\n\n**O Cuidado Especializado da Dra. Giovanna Paiva Castelo Branco**\n\nComo Médica Veterinária especializada, garanto a você que a eficácia e, acima de tudo, a segurança do tratamento dependem da especialização do profissional. Acupuntura é Ato Médico: A precisão na escolha dos pontos, o diagnóstico correto e a técnica de inserção das agulhas exigem conhecimento aprofundado de anatomia e fisiologia veterinária. Meu Compromisso: Eu possuo a formação e a experiência necessárias para aplicar a acupuntura de forma segura e ética, garantindo a precisão dos pontos para resultados terapêuticos maximizados."
+              "popup_title": "A Acupuntura: Conforto, Equilíbrio e Qualidade de Vida",
+              "popup_content": "A Acupuntura Veterinária é uma ciência milenar integrada à Medicina Veterinária Integrativa. Meu foco é restaurar o equilíbrio do seu pet (corpo, mente e espírito) e promover uma melhoria substancial na sua qualidade de vida.\n\n**Benefícios Comprovados para o seu Pet:**\n\n- **Alívio da Dor e Mobilidade:** Essencial no manejo de dores crônicas (osteoartrite, displasia e coluna), estimulando analgésicos naturais e auxiliando na recuperação da autonomia e alegria ao caminhar.\n- **Suporte Emocional:** Promove relaxamento profundo, sendo excelente para manejar casos de ansiedade, estresse e medos.\n- **Otimização Interna:** Auxilia na recuperação pós-cirúrgica e dá suporte a órgãos vitais (como em casos de problemas renais e gastrointestinais).\n\n**Cuidado Profissional:**\n\nA Acupuntura é um ato médico que exige especialização. Garanto a segurança, ética e precisão na escolha dos pontos para resultados terapêuticos maximizados, oferecendo o melhor cuidado que seu pet merece."
             },
             {
               "id": 2,
@@ -150,40 +150,31 @@
               "popup_content": "Avaliações de rotina, acompanhamento de doenças crônicas, cuidados pós-operatórios e orientações preventivas. Quando necessário, realizo encaminhamentos para exames complementares, sempre buscando a solução completa e integrada para a saúde do seu pet."
             },
             {
-              "id": 8,
-              "title": "Perguntas Frequentes (FAQ)",
-              "icon": "fas fa-question-circle",
-              "popup_title": "Dúvidas Comuns (FAQ)",
-              "popup_content": "**A acupuntura dói?** Não. A técnica é minimamente invasiva e visa o conforto. Muitos animais relaxam profundamente e até dormem durante a sessão.\n\n**Quantas sessões são necessárias?** Depende da condição. Iniciamos com uma frequência maior (ex: semanal) e ajustamos gradativamente conforme a resposta positiva do pet e a evolução do quadro.\n\n**É seguro misturar com medicamentos?** Sim, quando indicado. A Medicina Integrativa complementa a convencional. A integração é feita com avaliação médica cuidadosa para otimizar resultados e qualidade de vida."
-            },
-            {
-              "id": "galeria",
-              "title": "Galeria de Fotos (Em Breve)",
-              "icon": "fas fa-camera",
-              "popup_title": "Galeria de Fotos e Conteúdo",
-              "popup_content": "Esta seção será em breve atualizada com a galeria de fotos e, futuramente, o logo oficial. Fique ligado no nosso Instagram para acompanhar o dia a dia dos nossos pacientes!"
-            },
-            {
               "id": 7,
               "title": "Quem é a Dra. Giovanna Paiva Castelo Branco?",
               "icon": "fas fa-user-md",
               "popup_title": "Sobre Dra. Giovanna Paiva Castelo Branco",
               "popup_content": "Sou médica veterinária com especialização em Acupuntura Veterinária e terapias integrativas. Utilizo a acupuntura, fotobiomodulação (laser), eletroestimulação e moxabustão de forma personalizada.\n\nO objetivo é tratar cada animal como um todo, buscando o equilíbrio e as causas dos problemas, e não apenas aliviar sintomas. Muitas vezes, associo técnicas diferentes em um tratamento, de acordo com as necessidades e respostas de cada animal.\n\nO atendimento é feito no conforto do lar ou em clínicas parceiras, sempre com muita dedicação e pensando no que é melhor para sua família. Estou à disposição para tirar dúvidas, te orientar e contribuir para que seu pet tenha uma vida mais saudável e feliz! 💙"
             }
+            // Botões FAQ (id 8) e Galeria (id 'galeria') foram removidos da lista de botões.
           ],
           "testimonials": [
             {
               "quote": "A melhora da Dona Flor foi incrível após as sessões. Ela está mais ativa e feliz! O atendimento em casa faz toda a diferença.",
-              "author": "Laura S. (Tutora da Flor)"
+              "author": "Laura S.",
+              "animal_type": "dog" // Identificador para o ícone
             },
             {
               "quote": "Profissionalismo e carinho inigualáveis. A Dra. Giovanna realmente olha para o meu gato de forma integral. Recomendo a todos!",
-              "author": "Marcos P. (Tutor do Sushi)"
+              "author": "Marcos P.",
+              "animal_type": "cat" // Identificador para o ícone
             },
             {
               "quote": "Os pacotes terapêuticos valeram muito a pena. Conseguimos ajustar a frequência e o meu pet respondeu muito bem. Excelente acompanhamento!",
-              "author": "Ana C. (Tutora do Thor)"
+              "author": "Ana C.",
+              "animal_type": "dog" // Identificador para o ícone (assumindo que "Thor" seja cachorro)
             }
+            // Não tenho dados para uma iguana nos depoimentos atuais.
           ]
         };
 
@@ -194,7 +185,8 @@
             if (!text) return null;
             const paragraphs = text.split('\n\n');
             return (
-                <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
+                // Fonte aumentada: text-sm -> text-base, md:text-base -> md:text-lg
+                <div className="space-y-4 text-base md:text-lg text-gray-700 leading-relaxed"> 
                     {paragraphs.map((paragraph, idx) => {
                         const lines = paragraph.split('\n');
                         return (
@@ -258,10 +250,12 @@
                 <h1 className="text-2xl font-bold font-serif text-gray-800 leading-tight px-4 mt-2">
                     {siteData.profile.name}
                 </h1>
-                <p className="text-xs font-bold text-pastel-accent mt-1 tracking-wide uppercase">
+                {/* AUMENTO DA FONTE APLICADO: text-xs -> text-sm */}
+                <p className="text-sm font-bold text-pastel-accent mt-1 tracking-wider uppercase">
                     {siteData.profile.crmv}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">
+                {/* AUMENTO DA FONTE APLICADO: text-sm -> text-base */}
+                <p className="text-base text-gray-500 mt-1">
                     {siteData.profile.tagline}
                 </p>
             </div>
@@ -273,7 +267,8 @@
                     <i className="fas fa-home text-pastel-accent text-xl"></i>
                     <div>
                         <h3 className="font-bold text-gray-700 text-sm mb-1">{siteData.highlight_box.title}</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto">
+                        {/* Conteúdo do cartão de destaque: text-xs -> text-sm */}
+                        <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
                             {siteData.highlight_box.content}
                         </p>
                     </div>
@@ -291,7 +286,7 @@
                     <a href={waLink} target="_blank" className="link-btn w-full py-4 px-6 rounded-xl flex items-center justify-between transition-all duration-300 transform hover:-translate-y-1 mb-4 shadow-xl border bg-pastel-primary text-white border-transparent hover:bg-[#7a967d] shadow-md no-underline">
                         <div className="flex items-center gap-4">
                             <i className={`${btn.icon} text-xl w-6 text-center`}></i>
-                            <span className="font-extrabold text-sm md:text-base text-left tracking-wide uppercase">{btn.label}</span>
+                            <span className="font-extrabold text-base md:text-lg text-left tracking-wide uppercase">{btn.label}</span>
                         </div>
                         <i className="fas fa-hand-pointer text-sm"></i>
                     </a>
@@ -306,32 +301,52 @@
                 <button onClick={() => onClick(btn)} className={`${baseClasses} ${styleClasses}`}>
                     <div className="flex items-center gap-4">
                         <i className={`${btn.icon} text-lg w-6 text-center text-pastel-primary`}></i>
-                        <span className="font-semibold text-sm text-left text-gray-700">{btn.title}</span>
+                        {/* Título do botão: text-sm -> text-base */}
+                        <span className="font-semibold text-base text-left text-gray-700">{btn.title}</span>
                     </div>
                     <i className="fas fa-chevron-right text-xs text-gray-300"></i>
                 </button>
             );
         };
 
-        const TestimonialsSection = () => (
-            <div className="w-full mt-6 mb-8 p-4 pt-6 rounded-2xl testimonial-bg shadow-lg border border-gray-100">
-                <h2 className="text-center font-serif text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
-                    <i className="fas fa-heart text-pastel-accent text-sm"></i>
-                    O que dizem os tutores
-                </h2>
-                <div className="space-y-4">
-                    {siteData.testimonials.map((testimonial, index) => (
-                        <div key={index} className="bg-white p-4 rounded-xl shadow-md border border-gray-50 transition-all duration-300 hover:shadow-xl">
-                            <p className="text-sm italic text-gray-600 mb-2">
-                                <i className="fas fa-quote-left text-pastel-secondary mr-2"></i>
-                                {testimonial.quote}
-                            </p>
-                            <p className="text-xs font-bold text-right text-pastel-accent mt-2">- {testimonial.author}</p>
-                        </div>
-                    ))}
+        // O componente TestimonialsSection foi mantido, mas não será renderizado no componente App.
+        const TestimonialsSection = () => {
+            const getAnimalIcon = (animalType) => {
+                switch (animalType) {
+                    case 'dog':
+                        return <i className="fas fa-dog ml-2 text-pastel-accent text-xs"></i>;
+                    case 'cat':
+                        return <i className="fas fa-cat ml-2 text-pastel-accent text-xs"></i>;
+                    case 'iguana':
+                        return <i className="fas fa-paw ml-2 text-pastel-accent text-xs"></i>; 
+                    default:
+                        return null;
+                }
+            };
+
+            return (
+                <div className="w-full mt-6 mb-8 p-4 pt-6 rounded-2xl testimonial-bg shadow-lg border border-gray-100">
+                    <h2 className="text-center font-serif text-xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-2">
+                        <i className="fas fa-heart text-pastel-accent text-sm"></i>
+                        O que dizem os tutores
+                    </h2>
+                    <div className="space-y-4">
+                        {siteData.testimonials.map((testimonial, index) => (
+                            <div key={index} className="bg-white p-4 rounded-xl shadow-md border border-gray-50 transition-all duration-300 hover:shadow-xl">
+                                <p className="text-base italic text-gray-600 mb-2">
+                                    <i className="fas fa-quote-left text-pastel-secondary mr-2"></i>
+                                    {testimonial.quote}
+                                </p>
+                                <p className="text-sm font-bold text-right text-pastel-accent mt-2 flex items-center justify-end">
+                                    - {testimonial.author}
+                                    {getAnimalIcon(testimonial.animal_type)}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        };
 
         const SocialFooter = () => (
             <div className="mt-8 flex justify-center gap-6">
@@ -352,15 +367,18 @@
                 {/* Aviso de Segurança */}
                 <div className="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                     <h4 className="text-xs font-bold text-yellow-700 mb-1">{siteData.emergency_notice.title}</h4>
-                    <p className="text-[10px] text-gray-600 leading-tight">{siteData.emergency_notice.content}</p>
+                    {/* Conteúdo do aviso: text-[10px] -> text-xs */}
+                    <p className="text-xs text-gray-600 leading-tight">{siteData.emergency_notice.content}</p>
                 </div>
                 {/* Política de Privacidade */}
                 <div className="p-2">
                     <h4 className="text-xs font-bold text-gray-500 mb-1">{siteData.privacy_policy.title}</h4>
-                    <p className="text-[10px] text-gray-500 leading-tight">{siteData.privacy_policy.content}</p>
+                    {/* Conteúdo da política: text-[10px] -> text-xs */}
+                    <p className="text-xs text-gray-500 leading-tight">{siteData.privacy_policy.content}</p>
                 </div>
                 <div className="mt-4 text-center">
-                    <p className="text-[10px] text-gray-400 font-light">
+                    {/* Copyright: text-[10px] -> text-xs */}
+                    <p className="text-xs text-gray-400 font-light">
                         © {new Date().getFullYear()} {siteData.profile.name} | Desenvolvido com foco no Bem-Estar Animal
                     </p>
                 </div>
@@ -380,7 +398,7 @@
 
             if (!data) return null;
 
-            // Determina se deve mostrar o botão de contato (esconde na Galeria)
+            // Determina se deve mostrar o botão de contato (o botão de Galeria foi removido, mas mantemos o cheque de segurança)
             const showContactButton = data.id !== 'galeria';
 
             return (
@@ -389,29 +407,39 @@
                     onClick={onClose}
                 >
                     <div 
-                        className="bg-white rounded-2xl w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden modal-content"
-                        onClick={e => e.stopPropagation()}
+                        className="bg-white rounded-2xl w-full max-w-md max-h-[90vh] overflow-hidden shadow-2xl modal-content"
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="px-6 py-4 bg-pastel-bg border-b border-gray-100 flex justify-between items-center shrink-0">
-                            <h3 className="font-serif font-bold text-gray-800 pr-4 text-xl">{data.popup_title}</h3>
-                            <button onClick={onClose} className="w-8 h-8 rounded-full bg-white text-gray-400 hover:text-pastel-accent flex items-center justify-center transition-colors shadow-sm border border-gray-100">
-                                <i className="fas fa-times"></i>
-                            </button>
-                        </div>
-                        
-                        <div className="p-6 overflow-y-auto custom-scroll">
-                            {/* Componente para formatação do texto do modal */}
+                        <div className="p-6 custom-scroll overflow-y-auto max-h-[90vh]">
+                            {/* Header */}
+                            <div className="flex justify-between items-start mb-4 border-b pb-3">
+                                <h2 className="font-serif text-xl font-bold text-pastel-primary">
+                                    {data.popup_title}
+                                </h2>
+                                <button 
+                                    onClick={onClose}
+                                    className="p-2 -mt-2 -mr-2 text-gray-400 hover:text-gray-600 transition-colors"
+                                    aria-label="Fechar"
+                                >
+                                    <i className="fas fa-times text-lg"></i>
+                                </button>
+                            </div>
+
+                            {/* Conteúdo */}
                             <FormattedText text={data.popup_content} />
                         </div>
-
+                        
+                        {/* Botão de Contato (se aplicável) - Botão de Agendar Consulta */}
                         {showContactButton && (
-                            <div className="p-4 bg-gray-50 border-t border-gray-100 shrink-0 text-center">
+                            <div className="p-4 border-t bg-gray-50 text-center">
                                 <a 
-                                    href={`https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`}
-                                    target="_blank"
-                                    className="block w-full bg-pastel-primary hover:bg-[#7a967d] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-lg text-sm uppercase tracking-wide transform hover:scale-[1.01]"
+                                    href={`https://wa.me/55${siteData.social.whatsapp}?text=${encodeURIComponent(siteData.whatsapp_message)}`} 
+                                    target="_blank" 
+                                    className="link-btn w-full py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 bg-pastel-accent text-white font-bold hover:bg-[#c99a6c]"
+                                    onClick={onClose} // Fecha o modal ao clicar no link de agendamento
                                 >
-                                    <i className="fab fa-whatsapp mr-2"></i> Agende Agora
+                                    <i className="fab fa-whatsapp text-lg"></i>
+                                    Agendar uma Consulta (WhatsApp)
                                 </a>
                             </div>
                         )}
@@ -420,52 +448,58 @@
             );
         };
 
-        // --- COMPONENTE PRINCIPAL ---
-        const App = () => {
-            const [activeModal, setActiveModal] = React.useState(null);
 
-            // Código para garantir que o link de destaque tenha o URL correto
-            const buttonsWithLinks = siteData.buttons.map(btn => {
-                if (btn.type === 'link_highlight') {
-                    return { ...btn, url: `https://wa.me/55${siteData.social.whatsapp}` };
-                }
-                return btn;
-            });
+        // --- MAIN APP COMPONENT ---
+
+        const App = () => {
+            const [selectedModal, setSelectedModal] = React.useState(null);
+
+            const openModal = (btnData) => {
+                setSelectedModal(btnData);
+            };
+
+            const closeModal = () => {
+                setSelectedModal(null);
+            };
 
             return (
-                <div className="min-h-screen flex flex-col items-center py-10 px-4 max-w-md mx-auto relative z-10">
-                    <ProfileHeader />
-                    <HighlightCard />
-                    
-                    <div className="w-full">
-                        <div className="text-xs text-center text-gray-400 mb-4 font-serif font-light tracking-widest uppercase">
-                            Excelência e Acolhimento em Medicina Veterinária Integrativa
-                        </div>
+                <div className="min-h-screen flex flex-col items-center p-4">
+                    <div className="w-full max-w-lg mx-auto">
                         
-                        {buttonsWithLinks.map(btn => (
-                            <LinkButton key={btn.id} btn={btn} onClick={setActiveModal} />
-                        ))}
-                    </div>
-                    
-                    <TestimonialsSection />
-                    <SocialFooter />
-                    <FooterNotices />
+                        {/* 1. Header (Foto, Nome, CRMV) */}
+                        <ProfileHeader />
 
-                    {activeModal && (
-                        <Modal data={activeModal} onClose={() => setActiveModal(null)} />
-                    )}
+                        {/* 2. Caixa de Destaque */}
+                        <HighlightCard />
+
+                        {/* 3. Botões de Ação */}
+                        <div className="space-y-3 mb-6">
+                            {siteData.buttons.map(btn => (
+                                <LinkButton 
+                                    key={btn.id} 
+                                    btn={btn} 
+                                    onClick={openModal} 
+                                />
+                            ))}
+                        </div>
+
+                        {/* 4. Depoimentos - BLOCO REMOVIDO/COMENTADO */}
+                        {/* <TestimonialsSection /> */}
+
+                        {/* 5. Footer Social */}
+                        <SocialFooter />
+
+                        {/* 6. Notices / Rodapé */}
+                        <FooterNotices />
+                    </div>
+
+                    {/* Modal */}
+                    <Modal data={selectedModal} onClose={closeModal} />
                 </div>
             );
         };
 
-        // Montagem do Aplicativo no DOM (Usando createRoot)
-        const container = document.getElementById('root');
-        if (container) {
-            const root = ReactDOM.createRoot(container);
-            root.render(<App />);
-        } else {
-            console.error("Erro: O elemento com id 'root' não foi encontrado no DOM.");
-        }
+        ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
 </html>
