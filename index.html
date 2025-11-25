@@ -122,7 +122,15 @@
               // Conteúdo atualizado com foco na primeira consulta e listagem para ícones
               "popup_content": "**Na Primeira Consulta:**\n\nRealizo uma avaliação completa (histórico, exame físico e análise do estado energético) do seu pet para entender suas necessidades.\n\n- **Protocolo Personalizado:** Em seguida, iniciamos o protocolo inicial de Medicina Integrativa, podendo incluir diversas técnicas como: acupuntura, fotobiomodulação (laserpuntura), eletroestimulação e moxabustão, a depender de cada caso.\n- **Plano Detalhado:** Ao final, você receberá o plano terapêutico detalhado e a frequência sugerida de sessões, tudo pensado para o melhor conforto e resposta do seu pet." 
             },
-            // O botão de ID 2 foi removido, pois seu conteúdo está agora no botão ID 1.
+            // BOTÃO COM CONTEÚDO ATUALIZADO (ID 2)
+            {
+              "id": 2,
+              "title": "Benefícios da Medicina Integrativa", // TÍTULO NOVO
+              "icon": "fas fa-stethoscope",
+              "popup_title": "Benefícios da Medicina Integrativa", // TÍTULO NOVO
+              "popup_content": "A Medicina Veterinária Integrativa une o melhor da ciência moderna às terapias complementares, oferecendo uma visão ampla e completa do cuidado animal. Ela valoriza não apenas a doença, mas o indivíduo como um todo (corpo, mente e espírito) promovendo equilíbrio e bem-estar. Diante disso, utilizo a Acupuntura e outras técnicas integrativas para restaurar a vitalidade, reduzir desconfortos e melhorar a qualidade de vida do seu pet.\n\n**Benefícios para o seu Pet:**\n- Alívio da dor e melhora da mobilidade: Atuação essencial no manejo de dores agudas e crônicas, como osteoartrite, displasia, alterações de coluna e mais. A acupuntura associada a eletroestimulação (TENS/FES/Russa/Aussie) ou eletroacupuntura, potencializa a liberação de analgésicos naturais e favorece a recuperação da autonomia e da alegria ao caminhar.\n- Aceleração da cicatrização e analgesia: A fotobiomodulação atua de forma não invasiva na regeneração tecidual, reduz inflamações, acelera a cicatrização e contribui significativamente para o alívio da dor.\n- Suporte emocional: Favorece um estado de relaxamento, auxiliando os pets com ansiedade, estresse, medos e comportamentos reativos.\n- Otimização interna e recuperação acelerada: Contribui para a o preparo pré-cirúrgico e recuperação pós-cirúrgica, melhora da circulação, suporte imunológico e equilíbrio de órgãos vitais.\n\n**Cuidado Individualizado e Ético:**\n\nAtuo com responsabilidade, conhecimento técnico e constante atualização. Cada protocolo é planejado de forma personalizada, respeitando a condição clínica e o bem-estar do seu pet, a fim de oferecer resultados terapêuticos seguros, eficientes e integrativos."
+            },
+            // FIM DO BOTÃO ATUALIZADO
             {
               "id": 3,
               "title": "Pacotes Terapêuticos e Acompanhamento",
@@ -405,6 +413,24 @@
 
             // Filtra os botões, removendo o de ID 6 (Consultas de Rotina)
             const filteredButtons = siteData.buttons.filter(btn => btn.id !== 6);
+            
+            // Ordena os botões para garantir a ordem (Agendamento, Meu Trabalho, Benefícios, etc.)
+            const sortedButtons = filteredButtons.sort((a, b) => {
+                if (a.type === 'link_highlight') return -1; // Agendamento primeiro
+                if (b.type === 'link_highlight') return 1;
+
+                // Ordenação específica para os IDs 1 (Meu Trabalho) e 2 (Benefícios)
+                if (a.id === 1 && b.id === 2) return -1;
+                if (a.id === 2 && b.id === 1) return 1;
+
+                // Manter a ordem original para o resto, usando IDs numéricos se disponíveis
+                if (typeof a.id === 'number' && typeof b.id === 'number') {
+                    return a.id - b.id;
+                }
+                
+                return 0;
+            });
+
 
             return (
                 // O padding garante que não fique encostado nas bordas
@@ -419,7 +445,7 @@
 
                         {/* 3. Botões de Ação */}
                         <div className="space-y-3 mb-6">
-                            {filteredButtons.map(btn => (
+                            {sortedButtons.map(btn => (
                                 <LinkButton 
                                     key={btn.id} 
                                     btn={btn} 
