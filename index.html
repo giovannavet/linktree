@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V10)</title>
+    <title>Dra. Giovanna Paiva Castelo Branco | Integrativa (V13)</title>
     
-    <!-- React & ReactDOM (CDNs corrigidos e atualizados) -->
+    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
@@ -47,12 +47,11 @@
 
     <style>
         /* Estilos globais e animações */
-        html, body, #root {
-            height: 100%;
-            /* FIX CRÍTICO DE SCROLL: Força o scroll no nível do body/html
-              e garante que a altura seja pelo menos a da viewport
-            */
-            overflow-y: auto !important; 
+        html, body {
+            height: auto; 
+            min-height: 100vh;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch; 
         }
 
         body {
@@ -87,17 +86,14 @@
             "name": "Dra. Giovanna Paiva Castelo Branco", 
             "tagline": "Médica Veterinária | Práticas Integrativas em Natal/RN",
             "crmv": "CRM-V/RN 2551",
-            // URL DA IMAGEM
+            // Foto revertida para a solicitada pelo usuário
             "image": "https://media.licdn.com/dms/image/v2/D4D03AQG-m_odOakApQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730681482144?e=1765411200&v=beta&t=2E4wQJ5NH1lIPW3mlvqgf9z2uLsL0JJ-lM-0HW4_7a8" 
           },
           "highlight_box": {
             "title": "Atendimento Domiciliar",
             "content": "Conforto e segurança para seu pet em Natal, RN. Especializada em Acupuntura Veterinária para equilíbrio e bem-estar."
           },
-          "emergency_notice": {
-            "title": "Aviso de Segurança: Tratamentos Integrativos",
-            "content": "As terapias integrativas oferecidas complementam o tratamento médico. Em casos de emergência ou urgência, procure atendimento veterinário convencional imediatamente."
-          },
+          // O bloco "emergency_notice" foi removido conforme solicitação
           "privacy_policy": {
             "title": "Política de Privacidade (Resumo)",
             "content": "Dados de contato utilizados apenas para agendamento e atendimento. Não serão compartilhados sem consentimento. Sua privacidade é nossa prioridade."
@@ -186,7 +182,6 @@
             if (!text) return null;
             const paragraphs = text.split('\n\n');
             return (
-                // Fonte aumentada: text-sm -> text-base, md:text-base -> md:text-lg
                 <div className="space-y-4 text-base md:text-lg text-gray-700 leading-relaxed"> 
                     {paragraphs.map((paragraph, idx) => {
                         const lines = paragraph.split('\n');
@@ -240,7 +235,7 @@
                     {/* Foto de perfil circular */}
                     <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-4 border-pastel-primary/50">
                         <img 
-                            src={siteData.profile.image} // Usando o link
+                            src={siteData.profile.image} // Usando a URL da foto fornecida
                             alt={siteData.profile.name} 
                             // Fallback para caso o link falhe (imagem de placeholder)
                             onError={(e) => {e.target.src = "https://placehold.co/150x150/8ba88e/FFFFFF?text=Dra.+GPC";}}
@@ -251,11 +246,9 @@
                 <h1 className="text-2xl font-bold font-serif text-gray-800 leading-tight px-4 mt-2">
                     {siteData.profile.name}
                 </h1>
-                {/* FONTE AUMENTADA: CRMV */}
                 <p className="text-sm font-bold text-pastel-accent mt-1 tracking-wider uppercase">
                     {siteData.profile.crmv}
                 </p>
-                {/* FONTE AUMENTADA: Tagline */}
                 <p className="text-base text-gray-500 mt-1">
                     {siteData.profile.tagline}
                 </p>
@@ -265,13 +258,14 @@
         const HighlightCard = () => (
             <div className="bg-pastel-secondary bg-opacity-30 border border-pastel-secondary/50 rounded-xl p-4 mb-6 text-center shadow-inner relative overflow-hidden">
                 <div className="flex flex-col items-center gap-2">
-                    <i className="fas fa-home text-pastel-accent text-xl"></i>
-                    <div>
-                        <h3 className="font-bold text-gray-700 text-sm mb-1">{siteData.highlight_box.title}</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
-                            {siteData.highlight_box.content}
-                        </p>
-                    </div>
+                    {/* Símbolo da Casa adicionado diretamente no título */}
+                    <h3 className="font-bold text-gray-700 text-sm mb-1">
+                        <i className="fas fa-home text-pastel-accent mr-1"></i>
+                        {siteData.highlight_box.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed max-w-xs mx-auto">
+                        {siteData.highlight_box.content}
+                    </p>
                 </div>
             </div>
         );
@@ -324,20 +318,15 @@
 
         const FooterNotices = () => (
             <div className="w-full mt-8 p-4 text-center border-t border-gray-200">
-                {/* Aviso de Segurança */}
-                <div className="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
-                    <h4 className="text-xs font-bold text-yellow-700 mb-1">{siteData.emergency_notice.title}</h4>
-                    {/* Conteúdo do aviso: text-[10px] -> text-xs */}
-                    <p className="text-xs text-gray-600 leading-tight">{siteData.emergency_notice.content}</p>
-                </div>
+                {/* O bloco "Aviso de Segurança" foi removido */}
+                
                 {/* Política de Privacidade */}
                 <div className="p-2">
                     <h4 className="text-xs font-bold text-gray-500 mb-1">{siteData.privacy_policy.title}</h4>
-                    {/* Conteúdo da política: text-[10px] -> text-xs */}
                     <p className="text-xs text-gray-500 leading-tight">{siteData.privacy_policy.content}</p>
                 </div>
                 <div className="mt-4 text-center">
-                    {/* Copyright: text-[10px] -> text-xs */}
+                    {/* Copyright */}
                     <p className="text-xs text-gray-400 font-light">
                         © {new Date().getFullYear()} {siteData.profile.name} | Desenvolvido com foco no Bem-Estar Animal
                     </p>
@@ -351,7 +340,7 @@
                 window.addEventListener('keydown', handleEsc);
                 document.body.style.overflow = 'hidden';
                 return () => {
-                    document.body.style.overflow = 'auto'; // Modificado de 'unset' para 'auto' ou 'scroll'
+                    document.body.style.overflow = 'auto'; 
                     window.removeEventListener('keydown', handleEsc);
                 };
             }, [onClose]);
